@@ -307,8 +307,8 @@ bot.on("message", function(message) {
         break; */
 
         case "everyone":
+         if(!message.member.("ADMINISTRATOR")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
          message.delete();
-         message.reply("Vous n'avez pas la permission de faire @everyone.")
         console.log(suffix)
         break;
 
