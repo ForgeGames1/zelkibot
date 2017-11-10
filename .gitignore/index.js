@@ -161,7 +161,7 @@ bot.on("message", function(message) {
             .addField("z!ban", "Cette commande permet de bannir un utilisateur ! Pour l'utiliser, faites z!ban @(utilisateur)")
                 .addField("z!kick", "Cette commande permet de kick un utilisateur ! Pour l'utiliser, faites z!kick @(utilisateur)")
                 .addField("z!purge", "Cette commande permet de supprimé des messages beaucoup plus rapidement ! Pour l'utiliser, faites z!purge (nombredemessages)")
-                .addField("z!mute", "Cette commande permet de mute un utilisateur. Pour l'utiliser, faites /mute @(utilisateur)")
+                .addField("z!mute", "Cette commande permet de mute un utilisateur. Pour l'utiliser, faites z!mute @(utilisateur)")
                 .addField("z!broadcast", "Cette commande permet d'afficher un message important dans un channel. Pour l'utiliser, faites z!broadcast (message)")
                 .addField("z!unmute", "Cette commande permet d'unmute un utilisateur. Pour l'utiliser, faites z!unmute @(utilisateur)")
                 .addField("z!ping", "Grâce à cette commande, tu pourras savoir ton ping !")
@@ -269,6 +269,11 @@ bot.on("message", function(message) {
        message.delete();
        break;
        
+       case "instragram":
+       message.reply('Voici le compte instagram de Zelkiax: https://www.instagram.com/zelkiax/');
+       message.delete();
+       break
+
        case "ping":
        message.reply('Pong ! ' + "**" + message.createdTimestamp + "**" + ' ms. **');
        message.delete();
