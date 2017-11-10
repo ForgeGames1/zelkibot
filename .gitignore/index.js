@@ -1,4 +1,3 @@
-
 const Discord = require("discord.js");
 const TOKEN = "MzYzNjI0MzQ5MDYxNjExNTIw.DLD7Kg.rTpTI-SHkNbQdxAPIv7Z8O9gH94";
 const PREFIX = "z!";
@@ -78,12 +77,12 @@ bot.on('message', function(message) {
     });
 
 bot.on("guildMemberAdd", function(member) {
-    member.guild.channels.find("name", "nouveaux").sendMessage(member.toString() + " Bienvenue sur le discord de Zelkiax ! N'hésite pas à faire la commande z!help :D");
+    member.guild.channels.find("name", "bienvenue").sendMessage(member.toString() + " Bienvenue sur le discord de Zelkiax ! N'hésite pas à faire la commande z!help :D");
     member.addRole(member.guild.roles.find("name", "» ✔ Subs ✔ ●"));
 });
 
 bot.on("guildMemberRemove", function(member) {
-    member.guild.channels.find("name", "nouveaux").sendMessage(member.toString() + "A quitté le discord ! Adieu frère :c");
+    member.guild.channels.find("name", "bienvenue").sendMessage(member.toString() + "A quitté le discord ! Adieu frère :c");
 });
 
 bot.on("channelCreate", function(channelCreate) {
@@ -104,7 +103,7 @@ bot.on("message", function(message) {
 
     var reason = args.slice(1).join(" ");
 
-    var roleAnniv = member.guild.roles.find("name", "» 🍰 ANNIV' 🍰 ● ")
+ //   var roleAnniv = member.guild.roles.find("name", "» 🍰 ANNIV' 🍰 ● ")
 
     var user = message.mentions.users.first();
     
