@@ -269,7 +269,7 @@ bot.on("message", function(message) {
        message.delete();
        break;
        
-       case "instragram":
+       case "instagram":
        message.reply('Voici le compte instagram de Zelkiax: https://www.instagram.com/zelkiax/');
        message.delete();
        break
