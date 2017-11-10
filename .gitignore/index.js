@@ -86,7 +86,7 @@ bot.on("guildMemberRemove", function(member) {
 });
 
 bot.on("channelCreate", function(channelCreate) {
-    channelCreate.guild.channels.find("name", "annonce-serveur").sendMessage("Nouveau salon: " + channelCreate.toString() + " !");
+    channelCreate.guild.channels.find("name", "log").sendMessage("Nouveau salon: " + channelCreate.toString() + " !");
 });
 
 
