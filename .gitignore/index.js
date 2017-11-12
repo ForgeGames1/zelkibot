@@ -118,7 +118,7 @@ bot.on("message", function(message) {
 
     var roleJoueur= member.guild.roles.find("name", "membres")
     
-    var roleMute = member.guild.roles.find("name", "» :name_badge: Mute [S]")
+    var roleMute = member.guild.roles.find("name", "» :name_badge: Zelki' Mute [S]")
     
     var modlog = member.guild.channels.find("name", "log")
 
@@ -142,6 +142,7 @@ bot.on("message", function(message) {
         .setTimestamp()
         member.guild.channels.find("name", "log").sendEmbed(embed);
         break;
+            
         case "mute":
         if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
         if(!modlog) return message.reply("Je ne trouve pas de channel log.");
@@ -151,7 +152,7 @@ bot.on("message", function(message) {
         message.channel.sendMessage("@" + user.username + " a bien été mute.")
         
         var embed = new Discord.RichEmbed()
-            .addField("Commande :", "MUTE")
+        .addField("Commande :", "MUTE")
         .addField("Utilisateur :", user.username)
         .addField("Modérateur :", message.author.username)
         .addField("Heure:", message.channel.createdAt)
