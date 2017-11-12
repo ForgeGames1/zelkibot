@@ -275,6 +275,11 @@ bot.on("message", function(message) {
        message.reply('Voici le compte instagram de Zelkiax: https://www.instagram.com/zelkiax/');
        message.delete();
        break
+       
+       case "snapchat":
+       message.reply("Zelkiax est le compte snapchat de Zelkiax, il est grave bogosse en vrai. Je t'invite à aller voir! :D");
+       message.delete();
+       break
 
        case "ping":
        message.reply('Pong ! ' + "**" + message.createdTimestamp + "**" + ' ms. **');
