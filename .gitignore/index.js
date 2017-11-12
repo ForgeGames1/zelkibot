@@ -27,10 +27,17 @@ var zelkiaxRandomMessage = [
     "Zelkiax <3",
     "Zelkiax est c**, j'ai rien dit, c un bogosse :o",
     "Zelkiax t tro bo",
+    "Zelkiax > Lounaaa"
 ];
 
 var lounaaaRandomMessage = [
     "Lounaaa, la plus grande designeuse",
+    "Je suis plus fort en gfx que Lounaa",
+    "Lounaaa > Zelkiax",
+    "Wallah tu huzuni toi",
+    "Lounaaa stop cheat plz",
+    "Go duel HikaBrain, j'suis sur que j'te 5-0",
+    "Fait moi 24 Renders, 6 Miniatures et 28 Bannières plzz"
 ];
 
 
@@ -54,6 +61,11 @@ bot.on('message', function(message) {
 
         if(message.content === 'Zelkiax') {
             message.channel.sendMessage(zelkiaxRandomMessage[Math.floor(Math.random() * zelkiaxRandomMessage.length)]);
+            message.delete();
+        }
+    
+        if(message.content === 'Lounaaa') {
+            message.channel.sendMessage(lounaaaRandomMessage[Math.floor(Math.random() * lounaaaRandomMessage.length)]);
             message.delete();
         }
 
@@ -198,10 +210,8 @@ bot.on("message", function(message) {
             break;
 
         case "kick":
-            let reason = suffix.slice(1).join(" ");
             if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande. :x:");
             if(!modlog) return message.reply("Je ne trouve pas de channel log.");
-            if (reason.length < 1) return message.reply("Pour quelle raison ? -_-");
             if (message.mentions.users.size < 1) return message.reply("Tu n'as pas mis son pseudo au complet ! :o")
             message.guild.member(user).kick();
 
