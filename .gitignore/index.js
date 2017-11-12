@@ -196,21 +196,14 @@ bot.on("message", function(message) {
                 message.delete()
                 message.channel.sendEmbed(embed);
             break;
-        case "regles":
-            var embed = new Discord.RichEmbed()
-                .setAuthor(message.author.username, message.author.avatarURL)
-                .setColor("#01A9DB")
-                .setFooter("Respecter les règles est importants pour respecter les autres. Vous voulez un(des) ajout(s) ? Demandez au créateur du bot(XeCrafT) en privée !")
-                .setTimestamp()
-                .setDescription("Règles du discord de Zelkiax.")
-                message.delete()
-            message.channel.sendEmbed(embed);
-            break;
+
         case "kick":
+            let reason = suffix.slice(1).join(" ");
             if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande. :x:");
             if(!modlog) return message.reply("Je ne trouve pas de channel log.");
             if (reason.length < 1) return message.reply("Tu as oublié de préciser le joueur que je dois kick");
-            if (message.mentions.users.size < 1) return message.reply("Tu as oublié de préciser qui je dois kick..")
+            if (message.mentions.users.size < 1) return message.reply("Tu n'as pas mis son pseudo au complet ! :o")
+            if (!reason) return message.reply ("Vous devez mettre une raison !");
             message.guild.member(user).kick();
 
             var embed = new Discord.RichEmbed()
@@ -222,7 +215,7 @@ bot.on("message", function(message) {
             .setAuthor(message.author.username, message.author.avatarURL)
             .setTimestamp()
             member.guild.channels.find("name", "log").sendEmbed(embed);
-            bot.channels.get('373240336169828353').sendMessage(":white_check_mark: Le joueur " + user.username + " à bien été kick pour: ");
+            bot.channels.get('373240336169828353').sendMessage(":white_check_mark: Le joueur " + user.username + " à bien été kick pour: " + reason);
        
             message.react(":poop:")
             message.delete();
