@@ -33,7 +33,6 @@ var lounaaaRandomMessage = [
     "Lounaaa, la plus grande designeuse",
 ];
 
-   var staff = bot.channel.get("name", "chat-staff").defaultChannel;
 
 bot.on('message', function(message) {
 
@@ -223,8 +222,7 @@ bot.on("message", function(message) {
             .setAuthor(message.author.username, message.author.avatarURL)
             .setTimestamp()
             member.guild.channels.find("name", "log").sendEmbed(embed);
-            
-            staff.sendMessage(staff, ":white_check_mark: Le joueur " + user.username + " à bien été kick pour: ");
+            bot.channels.get('chat-staff').sendMessage(staff, ":white_check_mark: Le joueur " + user.username + " à bien été kick pour: ");
        
             message.react(":poop:")
             message.delete();
