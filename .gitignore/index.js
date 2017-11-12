@@ -224,10 +224,8 @@ bot.on("message", function(message) {
             .setAuthor(message.author.username, message.author.avatarURL)
             .setTimestamp()
             member.guild.channels.find("name", "log").sendEmbed(embed);
-            
-             var embedstaff = new Discord.RichEmbed()
-            .addField("Le joueur " + user.username + " à bien été kick pour " + " :white_check_mark:")
-            member.guild.channels.find("name", "chat-staff").sendEmbed(embedstaff);
+        
+            member.guild.channels.find("name", "chat-staff").channel.sendMessage(":white_check_mark: Le joueur XeCrafT(testaccount) à bien été kick pour: ");
             message.react(":poop:")
             message.delete();
             break;
