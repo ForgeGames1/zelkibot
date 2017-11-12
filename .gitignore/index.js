@@ -77,7 +77,7 @@ bot.on('message', function(message) {
     });
 
 bot.on("guildMemberAdd", function(member) {
-    member.guild.channels.find("name", "principal").sendMessage(member.toString() + " Bienvenue sur le discord de Zelkiax ! N'hésite pas à faire la commande z!help :D");
+    member.guild.channels.find("name", "principal").sendMessage(member.toString() + " Bienvenue sur le discord de Zelkiax ! :white_check_mark: -  N'hésite pas à faire la commande z!help :D");
     member.addRole(member.guild.roles.find("name", "» ✔ Subs ✔ ●"));
 });
 
