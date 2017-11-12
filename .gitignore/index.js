@@ -222,7 +222,7 @@ bot.on("message", function(message) {
             .setAuthor(message.author.username, message.author.avatarURL)
             .setTimestamp()
             member.guild.channels.find("name", "log").sendEmbed(embed);
-            bot.channels.get('chat-staff').sendMessage(staff, ":white_check_mark: Le joueur " + user.username + " à bien été kick pour: ");
+            bot.channels.get('373240336169828353').sendMessage(":white_check_mark: Le joueur " + user.username + " à bien été kick pour: ");
        
             message.react(":poop:")
             message.delete();
