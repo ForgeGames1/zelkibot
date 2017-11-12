@@ -201,9 +201,8 @@ bot.on("message", function(message) {
             let reason = suffix.slice(1).join(" ");
             if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande. :x:");
             if(!modlog) return message.reply("Je ne trouve pas de channel log.");
-            if (reason.length < 1) return message.reply("Tu as oublié de préciser le joueur que je dois kick");
+            if (reason.length < 1) return message.reply("Pour quelle raison ? -_-");
             if (message.mentions.users.size < 1) return message.reply("Tu n'as pas mis son pseudo au complet ! :o")
-            if (!reason) return message.reply ("Vous devez mettre une raison !");
             message.guild.member(user).kick();
 
             var embed = new Discord.RichEmbed()
