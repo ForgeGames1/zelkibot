@@ -9,7 +9,6 @@ var bot = new Discord.Client();
 
 var servers = {};
 
-
 bot.on("ready", function () {
     bot.user.setGame("Zelki'Bot - z!help")
     bot.user.setUsername("Zelki'Bot")
@@ -224,8 +223,10 @@ bot.on("message", function(message) {
             .setAuthor(message.author.username, message.author.avatarURL)
             .setTimestamp()
             member.guild.channels.find("name", "log").sendEmbed(embed);
-        
-            member.guild.channels.find("name", "chat-staff").channel.sendMessage(":white_check_mark: Le joueur " + user.username + " à bien été kick pour: ");
+            
+            var staff = client.servers.get("name", "chat-staff").defaultChannel;
+            staff.sendMessage(staff, ":white_check_mark: Le joueur " + user.username + " à bien été kick pour: ");
+       
             message.react(":poop:")
             message.delete();
             break;
