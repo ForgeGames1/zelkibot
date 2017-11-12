@@ -218,10 +218,10 @@ bot.on("message", function(message) {
             var embed = new Discord.RichEmbed()
             .addField("Commande :", "KICK")
             .addField("Utilisateur :", user.username)
+            .addField("Le joueur à bien été kick pour " + " :white_check_mark:")
             .addField("Modérateur :", message.author.username)
              .addField("Heure:", message.channel.createdAt)
             .setColor("#01A9DB")
-            .setFooter("Le joueur à bien été kick pour " + raison + " :white_check_mark:")
             .setAuthor(message.author.username, message.author.avatarURL)
             .setTimestamp()
             member.guild.channels.find("name", "log").sendEmbed(embed);
