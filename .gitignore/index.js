@@ -33,7 +33,7 @@ var lounaaaRandomMessage = [
     "Lounaaa, la plus grande designeuse",
 ];
 
-   var staff = client.channel.get("name", "chat-staff").defaultChannel;
+   var staff = bot.channel.get("name", "chat-staff").defaultChannel;
 
 bot.on('message', function(message) {
 
