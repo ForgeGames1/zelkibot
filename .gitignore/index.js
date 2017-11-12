@@ -13,7 +13,7 @@ var servers = {};
 bot.on("ready", function () {
     bot.user.setGame("Zelki'Bot - z!help")
     bot.user.setUsername("Zelki'Bot")
-    console.log("Zelki<Bot - Connecté");
+    console.log("Zelki'Bot - Connecté");
 });
 
 
@@ -208,16 +208,10 @@ bot.on("message", function(message) {
                 message.delete()
             message.channel.sendEmbed(embed);
             break;
-        case "broadcast":
-            if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
-            message.channel.sendMessage(suffix)
-            message.delete();
-            console.log(suffix)
-            break;
         case "kick":
-            if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
+            if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande. :x:");
             if(!modlog) return message.reply("Je ne trouve pas de channel log.");
-            if (reason.length < 1) return message.reply("Tu as oublié la raison.");
+            if (reason.length < 1) return message.reply("Tu as oublié de préciser le joueur que je dois kick");
             if (message.mentions.users.size < 1) return message.reply("Tu as oublié de préciser qui je dois kick..")
             message.guild.member(user).kick();
 
@@ -227,6 +221,7 @@ bot.on("message", function(message) {
             .addField("Modérateur :", message.author.username)
              .addField("Heure:", message.channel.createdAt)
             .setColor("#01A9DB")
+            .setFooter("Le joueur à bien été kick pour " + raison + " :white_check_mark:")
             .setAuthor(message.author.username, message.author.avatarURL)
             .setTimestamp()
             member.guild.channels.find("name", "log").sendEmbed(embed);
