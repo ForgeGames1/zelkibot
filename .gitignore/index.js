@@ -30,8 +30,17 @@ var zelkiaxRandomMessage = [
     "Zelkiax t tro bo",
 ];
 
+var lounaaaRandomMessage = [
+    "Lounaaa, la plus grande designeuse",
+];
+
+
 
 bot.on('message', function(message) {
+
+        if(message.content === 'Salut') {
+            message.reply('Bonjour')
+        }
 
         if(message.content === 'Salut') {
             message.reply('Bonjour')
@@ -109,7 +118,7 @@ bot.on("message", function(message) {
 
     var roleJoueur= member.guild.roles.find("name", "membres")
     
-    var roleMute = member.guild.roles.find("name", "Mute")
+    var roleMute = member.guild.roles.find("name", "» :name_badge: Mute [S]")
     
     var modlog = member.guild.channels.find("name", "log")
 
