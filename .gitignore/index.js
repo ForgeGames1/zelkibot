@@ -224,8 +224,11 @@ bot.on("message", function(message) {
             .setAuthor(message.author.username, message.author.avatarURL)
             .setTimestamp()
             member.guild.channels.find("name", "log").sendEmbed(embed);
+            
+             var embedstaff = new Discord.RichEmbed()
+            .addField("Le joueur " + user.username + " à bien été kick pour " + " :white_check_mark:")
+            member.guild.channels.find("name", "chat-staff").sendEmbed(embedstaff);
             message.react(":poop:")
-            message.guild.channel.find("name", "chat-staff").sendMessage("Le joueur " + user.username + " à bien été kick pour " + " :white_check_mark:");
             message.delete();
             break;
         case "ban":
