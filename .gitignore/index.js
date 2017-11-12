@@ -148,7 +148,7 @@ bot.on("message", function(message) {
         if(!modlog) return message.reply("Je ne trouve pas de channel log.");
         var member = message.mentions.members.first();
         if (message.mentions.users.size < 1) return message.reply("Hum, à quelle personne je met le mute ?")
-        member.addRole(roleMute)
+          member.addRole(member.guild.roles.find("name", "» :name_badge: Zelki' Mute [S]"));
         message.channel.sendMessage("@" + user.username + " a bien été mute.")
         
         var embed = new Discord.RichEmbed()
