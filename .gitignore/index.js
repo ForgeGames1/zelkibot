@@ -30,6 +30,19 @@ var zelkiaxRandomMessage = [
     "Zelkiax > Lounaaa"
 ];
 
+var swakiRandomMessage = [
+    "Zelkiax + Swaki = SwaKiax <3 <3",
+    "Swaki + Zelkiax <3",
+    "Swaki mange des kiwis ! ",
+    "Swaki, la femme de Zelkiax :D",
+    "Zelkiax est tro bo",
+    "Swakiiiiiiiiiiiiiiiiiiii",
+    "O_o Swaki, ikawS O_o",
+    "Zelkiax <3",
+    "*grande moderatore*",
+    "Swaki > Zelkiax"
+];
+
 var lounaaaRandomMessage = [
     "Lounaaa, la plus grande designeuse",
     "Je suis plus fort en gfx que Lounaa",
@@ -61,6 +74,10 @@ bot.on('message', function(message) {
 
         if(message.content === 'Zelkiax') {
             message.channel.sendMessage(zelkiaxRandomMessage[Math.floor(Math.random() * zelkiaxRandomMessage.length)]);
+            message.delete();
+        }
+          if(message.content === 'Swaki') {
+            message.channel.sendMessage(swakiRandomMessage[Math.floor(Math.random() * swakiRandomMessage.length)]);
             message.delete();
         }
     
