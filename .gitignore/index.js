@@ -306,11 +306,11 @@ bot.on("message", function(message) {
         message.reply("Vous n'avez pas la permission de faire @everyone.")
         break; */
 
-        case "everyone":
-         if(!message.member.hasPermission("EVERYONE")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
-         message.delete();
-        console.log(suffix)
-        break;
+  //      case "everyone":
+//         if(!message.member.hasPermission("EVERYONE")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
+   //  message.delete();
+ //       console.log(suffix)
+      //  break;
 
         default:
         message.channel.sendMessage("")
