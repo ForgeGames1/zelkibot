@@ -225,7 +225,7 @@ bot.on("message", function(message) {
             .setTimestamp()
             member.guild.channels.find("name", "log").sendEmbed(embed);
         
-            member.guild.channels.find("name", "chat-staff").channel.sendMessage(":white_check_mark: Le joueur XeCrafT(testaccount) à bien été kick pour: ");
+            member.guild.channels.find("name", "chat-staff").channel.sendMessage(":white_check_mark: Le joueur " + user.username + " à bien été kick pour: ");
             message.react(":poop:")
             message.delete();
             break;
