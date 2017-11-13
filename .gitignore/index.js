@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const TOKEN = "MzYzNjI0MzQ5MDYxNjExNTIw.DLD7Kg.rTpTI-SHkNbQdxAPIv7Z8O9gH94";
+const TOKEN = "Mzc4Mjk2NTYxMDYwMjgyMzY4.DOuWIw.KBrhOFO0ZQ30sTrSG8v9sJxsE48";
 const PREFIX = "z!";
 const EVERYONE = "@";
 
@@ -345,4 +345,4 @@ bot.on("message", function(message) {
 
 });
 
-bot.login("Mzc4Mjk2NTYxMDYwMjgyMzY4.DOtfIw.P2YbiQnueERpIXmqzUvervec6DM");
+bot.login("Mzc4Mjk2NTYxMDYwMjgyMzY4.DOuWIw.KBrhOFO0ZQ30sTrSG8v9sJxsE48");
