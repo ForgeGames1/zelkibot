@@ -10,7 +10,7 @@ var bot = new Discord.Client();
 var servers = {};
 
 bot.on("ready", function () {
-    bot.user.setGame(client.guilds.size)
+    bot.user.setGame('ZelkiBot - z!help', 'https://www.twitch.tv/xecraft_dev/')
     bot.user.setUsername("Zelki'Bot")
     console.log("Zelki'Bot - Connecté");
 });
