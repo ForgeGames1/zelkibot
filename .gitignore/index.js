@@ -10,7 +10,7 @@ var bot = new Discord.Client();
 var servers = {};
 
 bot.on("ready", function () {
-    bot.user.setGame("Zelki'Bot - z!help")
+    bot.user.setGame(client.guilds.size)
     bot.user.setUsername("Zelki'Bot")
     console.log("Zelki'Bot - Connecté");
 });
@@ -52,6 +52,7 @@ var lounaaaRandomMessage = [
     "Go duel HikaBrain, j'suis sur que j'te 5-0",
     "Fait moi 24 Renders, 6 Miniatures et 28 Bannières plzz"
 ];
+
 
 bot.on('message', function(message) {
 
@@ -300,7 +301,7 @@ bot.on("message", function(message) {
        message.reply('Voici le compte twitter de Zelkiax: https://twitter.com/zelkiax_');
        message.delete();
        break;
-
+       
        case "instagram":
        message.reply('Voici le compte instagram de Zelkiax: https://www.instagram.com/zelkiax/');
        message.delete();
