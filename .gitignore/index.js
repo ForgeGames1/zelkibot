@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const YTDL = require("ytdl-core");
 const TOKEN = "Mzc4Mjk2NTYxMDYwMjgyMzY4.DOuWIw.KBrhOFO0ZQ30sTrSG8v9sJxsE48";
 const PREFIX = "z!";
 const EVERYONE = "@";
@@ -81,6 +82,11 @@ bot.on('message', function(message) {
             message.delete();
         }
     
+         if(message.content === 'azecko') {
+            message.channel.sendMessage("Azecko, il est grave bo ^^")
+            message.delete();
+        }
+    
           if(message.content === 'Swaki') {
             message.channel.sendMessage(swakiRandomMessage[Math.floor(Math.random() * swakiRandomMessage.length)]);
             message.delete();
@@ -92,6 +98,10 @@ bot.on('message', function(message) {
         }
 
         if(message.content === 'XeCrafT') {
+            message.channel.sendMessage("On ne juge pas un développeur! :o")
+        }
+    
+            if(message.content === 'xecraft') {
             message.channel.sendMessage("On ne juge pas un développeur! :o")
         }
         
@@ -156,6 +166,14 @@ bot.on("message", function(message) {
 
 
     switch (args[0].toLowerCase()) {
+        case "play":
+            if(!args[1]) {
+                message.reply("Tu as oublié de mettre un lien.");
+                return;
+             if(!args[10]) {
+                message.reply("Lien trop court, je crois que tu t'est trompé de lien!");
+                return;
+              }           
         case "unmute":
         if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
         if(!modlog) return message.reply("Je ne trouve pas de channel log.");
