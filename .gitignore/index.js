@@ -133,7 +133,7 @@ bot.on("message", function(message) {
 
     var suffix = args2.join(" ");
 
-    var reason = args.slice(1).join(" ");
+    var reason = args2.slice(1).join(" ");
 
  //   var roleAnniv = member.guild.roles.find("name", "» 🍰 ANNIV' 🍰 ● ")
 
@@ -173,6 +173,7 @@ bot.on("message", function(message) {
         case "mute":
         if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
         if(!modlog) return message.reply("Je ne trouve pas de channel log.");
+        if (reason.length < 1) return message.reply("Tu as oublié la raison.");
         var member = message.mentions.members.first();
         if (message.mentions.users.size < 1) return message.reply("Hum, à quelle personne je met le mute ?")
           member.addRole(member.guild.roles.find("name", "» :name_badge: Zelki' Mute [S]"));
@@ -183,6 +184,7 @@ bot.on("message", function(message) {
         .addField("Utilisateur :", user.username)
         .addField("Modérateur :", message.author.username)
         .addField("Heure:", message.channel.createdAt)
+        .addField("Raison : ", reason)
         .setColor("#01A9DB")
         .setAuthor(message.author.username, message.author.avatarURL)
         .setTimestamp()
@@ -229,6 +231,7 @@ bot.on("message", function(message) {
         case "kick":
             if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande. :x:");
             if(!modlog) return message.reply("Je ne trouve pas de channel log.");
+            if (reason.length < 1) return message.reply("Tu as oublié la raison.");
             if (message.mentions.users.size < 1) return message.reply("Tu n'as pas mis son pseudo au complet ! :o")
             message.guild.member(user).kick();
 
@@ -236,7 +239,8 @@ bot.on("message", function(message) {
             .addField("Commande :", "KICK")
             .addField("Utilisateur :", user.username)
             .addField("Modérateur :", message.author.username)
-             .addField("Heure:", message.channel.createdAt)
+            .addField("Heure:", message.channel.createdAt)
+            .addField("Raison : ", reason)
             .setColor("#01A9DB")
             .setAuthor(message.author.username, message.author.avatarURL)
             .setTimestamp()
@@ -249,6 +253,7 @@ bot.on("message", function(message) {
         case "ban":
             if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
             if(!modlog) return message.reply("Je ne trouve pas de channel log.");
+            if (reason.length < 1) return message.reply("Tu as oublié la raison.");
             if (message.mentions.users.size < 1) return message.reply("Tu as oublié de préciser qui je dois bannir..")
             
             message.guild.ban(user, 2);
@@ -257,7 +262,8 @@ bot.on("message", function(message) {
             .addField("Commande :", "BAN")
             .addField("Utilisateur :", user.username)
             .addField("Modérateur :", message.author.username)
-             .addField("Heure:", message.channel.createdAt)
+            .addField("Heure:", message.channel.createdAt)
+            .addField("Raison : ", reason)
             .setColor("#01A9DB")
             .setAuthor(message.author.username, message.author.avatarURL)
             .setTimestamp()
