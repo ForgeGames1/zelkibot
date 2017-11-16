@@ -65,17 +65,22 @@ bot.on('message', function(message) {
         }
 
         if(message.content === 'cool le bot') {
-            message.channel.sendMessage("Merci, c'est XeCrafT, mon créateur qui m'a développé ! :D")
+            message.channel.sendMessage("Merci, c'est XeCrafT et Azecko, mes créateurs qui m'ont développés ! :D")
         }
 
         if(message.content === 'genial le bot') {
-            message.channel.sendMessage("Merci, c'est XeCrafT, mon créateur qui m'a développé ! :D")
+            message.channel.sendMessage("Merci, c'est XeCrafT et Azecko, mes créateurs qui m'ont développés ! :D")
         }
 
         if(message.content === 'Zelkiax') {
             message.channel.sendMessage(zelkiaxRandomMessage[Math.floor(Math.random() * zelkiaxRandomMessage.length)]);
             message.delete();
         }
+            if(message.content === 'Azecko') {
+            message.channel.sendMessage("Azecko, il est grave bo ^^")
+            message.delete();
+        }
+    
           if(message.content === 'Swaki') {
             message.channel.sendMessage(swakiRandomMessage[Math.floor(Math.random() * swakiRandomMessage.length)]);
             message.delete();
@@ -87,7 +92,7 @@ bot.on('message', function(message) {
         }
 
         if(message.content === 'XeCrafT') {
-            message.channel.sendMessage("On ne juge pas mon créateur! :o")
+            message.channel.sendMessage("On ne juge pas un développeur! :o")
         }
         
         if(message.content === 'sa va') {
@@ -183,8 +188,8 @@ bot.on("message", function(message) {
         .addField("Commande :", "MUTE")
         .addField("Utilisateur :", user.username)
         .addField("Modérateur :", message.author.username)
-        .addField("Heure:", message.channel.createdAt)
         .addField("Raison : ", reason)
+        .addField("Heure:", message.channel.createdAt)
         .setColor("#01A9DB")
         .setAuthor(message.author.username, message.author.avatarURL)
         .setTimestamp()
@@ -239,8 +244,8 @@ bot.on("message", function(message) {
             .addField("Commande :", "KICK")
             .addField("Utilisateur :", user.username)
             .addField("Modérateur :", message.author.username)
-            .addField("Heure:", message.channel.createdAt)
             .addField("Raison : ", reason)
+            .addField("Heure:", message.channel.createdAt)
             .setColor("#01A9DB")
             .setAuthor(message.author.username, message.author.avatarURL)
             .setTimestamp()
@@ -262,8 +267,8 @@ bot.on("message", function(message) {
             .addField("Commande :", "BAN")
             .addField("Utilisateur :", user.username)
             .addField("Modérateur :", message.author.username)
-            .addField("Heure:", message.channel.createdAt)
             .addField("Raison : ", reason)
+            .addField("Heure:", message.channel.createdAt)
             .setColor("#01A9DB")
             .setAuthor(message.author.username, message.author.avatarURL)
             .setTimestamp()
