@@ -454,4 +454,4 @@ bot.on("message", function(message) {
 
 });
 
-bot.login("Mzc4Mjk2NTYxMDYwMjgyMzY4.DPDmIQ.IcBzDnQMvUoHiSagkmlEGDp2cHA");
+bot.login(process.env.TOKEN);
