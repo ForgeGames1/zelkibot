@@ -401,6 +401,20 @@ bot.on("message", function(message) {
                 var server = servers[message.guild.id];
                 if (server.dispatcher) server.dispatcher.end();
                 message.channel.sendMessage("La musique à été sauté")
+            
+            if(!servers[message.guild.id]) servers[message.guild.id] = {
+                queue: []
+            };
+
+            var server = servers[message.guild.id];
+
+            server.queue.push(args[1]);
+            if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
+                play(connection, message);
+            });
+            YTDL.getInfo(args[1], (err, info) => {
+                message.channel.sendMessage("Ajouté : **" + info.title + "**")
+            })
             break;
             case "pause":      
             var server = servers[message.guild.id];
