@@ -405,9 +405,10 @@ bot.on("message", function(message) {
             break;
             case "stop":
             var server = servers[message.guild.id];
-
             if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+            YTDL.getInfo(args[1], (err, info) => {
             message.channel.sendMessage("La musique" + info.title + " à bien été arrêté :white_check_mark:");
+            })
             break;
                 
          case "word":
