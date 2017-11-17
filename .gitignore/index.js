@@ -11,7 +11,7 @@ var bot = new Discord.Client();
 var servers = {};
 
 bot.on("ready", function () {
-    bot.user.setGame('ZelkiBot - z!help', 'https://www.twitch.tv/xecraft_dev/')
+    bot.user.setGame('ZelkiBot - z!help')
     bot.user.setUsername("Zelki'Bot")
     console.log("Zelki'Bot - Connecté");
 });
@@ -173,7 +173,7 @@ bot.on("message", function(message) {
              if(!args[10]) {
                 message.reply("Lien trop court, je crois que tu t'est trompé de lien!");
                 return;
-             */ }           
+             } */          
         case "unmute":
         if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
         if(!modlog) return message.reply("Je ne trouve pas de channel log.");
