@@ -2,7 +2,7 @@
 {
   "name": "zelkibot",
   "version": "1.0.0",
-  "description": "",
+  "description": "bot discord pour Zelkiax developer par XeCrafT & Azecko",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
