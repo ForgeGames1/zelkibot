@@ -189,7 +189,7 @@ bot.on("message", function(message) {
 
     var roleJoueur= member.guild.roles.find("name", "membres")
     
-    var roleMute = member.guild.roles.find("name", "» Zelki' Mute [S]")
+    var roleMute = member.guild.roles.find("name", "»⌛ Zelki' Mute [S]")
     
     var modlog = member.guild.channels.find("name", "log")
     
