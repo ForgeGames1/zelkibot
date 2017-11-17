@@ -44,6 +44,17 @@ var swakiRandomMessage = [
     "Swaki > Zelkiax"
 ];
 
+var wordRandomMessage = [
+    " un animal XD",
+    " un fruit o_o",
+    " à Zelkiax MDR”,
+    " à ma mè.. Oups, c'est vrai, je n'ai pas de mère je suis un robot!",
+    " un sport",
+    " une musique",
+    " à mes créateurs ! :3"
+    ];
+
+
 var lounaaaRandomMessage = [
     "Lounaaa, la plus grande designeuse",
     "Je suis plus fort en gfx que Lounaa",
@@ -250,6 +261,7 @@ bot.on("message", function(message) {
                 message.delete()
                 message.channel.sendEmbed(embed);
             break;
+                
 
         case "kick":
             if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande. :x:");
@@ -339,6 +351,10 @@ bot.on("message", function(message) {
        message.channel.sendMessage(zelkiaxRandomMessage[Math.floor(Math.random() * zelkiaxRandomMessage.length)]);
        message.delete();
        break;
+                
+                case "ZWord":
+                message.reply("Le mot **" + suffix + "** Me fais penser à " + wordRandomMessage);
+                break;
 
             default:
             message.channel.sendMessage("Commande invalide ^^ Fait **z!help** pour voir toutes les commandes disponible !")
