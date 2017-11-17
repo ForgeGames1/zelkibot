@@ -411,9 +411,9 @@ bot.on("message", function(message) {
             message.channel.sendMessage("La musique à bien été arrêté :white_check_mark:");
             break;
                 
-               /* case "ZWord":
+                case "word":
                 message.reply("Le mot **" + suffix + "** Me fais penser à " + wordRandomMessage[Math.floor(Math.random() * wordRandomMessage.length)]));
-                break;*/
+                break;
 
             default:
             message.channel.sendMessage("Commande invalide ^^ Fait **z!help** pour voir toutes les commandes disponible !")
