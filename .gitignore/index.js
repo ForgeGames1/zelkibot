@@ -406,6 +406,7 @@ bot.on("message", function(message) {
             case "stop":
             var server = servers[message.guild.id];
             if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+            message.channel.send("J'ai arrêté la musique et j'ai quitté le channel vocal !")
             break;
                 
          case "word":
