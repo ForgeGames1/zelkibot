@@ -238,7 +238,7 @@ bot.on("message", function(message) {
         .addField("Modérateur :", message.author.toString())
         .addField("Raison :", reasontimed)
         .addField("Temps :", args2[1] + " minute(s)")
-        .setColor(0x808000)
+        .setColor("#01A9DB")
         .setAuthor(message.author.username, message.author.avatarURL)
         .setTimestamp()
         member.guild.channels.find("name", "log").sendEmbed(embed);
