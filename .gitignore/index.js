@@ -412,7 +412,7 @@ bot.on("message", function(message) {
             break;
                 
          case "word":
-          message.reply('Le mot' + "**" + suffix + "**" + ' me fait penser à **';
+          message.reply('Le mot' + "**" + suffix + "**" + ' me fait penser à **');
           message.delete();
           break; 
 
