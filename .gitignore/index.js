@@ -47,7 +47,7 @@ var swakiRandomMessage = [
 var wordRandomMessage = [
     " un animal XD",
     " un fruit o_o",
-    " à Zelkiax MDR”,
+    " à Zelkiax MDR",
     " à ma mè.. Oups, c'est vrai, je n'ai pas de mère je suis un robot!",
     " un sport",
     " une musique",
