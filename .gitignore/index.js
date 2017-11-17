@@ -200,7 +200,7 @@ bot.on("message", function(message) {
 
     switch (args[0].toLowerCase()) {
         case "membres":
-            message.reply("Nous sommes " + guild.members.size + " membres sur le discord !");
+            message.reply("Nous sommes " + bot.users.size + " membres sur le discord !");
         break
         case "unmute":
         if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
@@ -238,7 +238,7 @@ bot.on("message", function(message) {
         .addField("Modérateur :", message.author.toString())
         .addField("Raison :", reasontimed)
         .addField("Temps :", args2[1] + " minute(s)")
-        .setColor("#01A9DB")
+        .setColor(0x808000)
         .setAuthor(message.author.username, message.author.avatarURL)
         .setTimestamp()
         member.guild.channels.find("name", "log").sendEmbed(embed);
@@ -404,14 +404,15 @@ bot.on("message", function(message) {
             break;
             case "skip":
                 var server = servers[message.guild.id];
-
+                    
                 if (server.dispatcher) server.dispatcher.end();
+                message.channel.sendMessage("Musique skipé ! :D")
             break;
             case "stop":
             var server = servers[message.guild.id];
 
             if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-            message.channel.sendMessage("La musique à bien été arrêté :white_check_mark:");
+            message.channel.sendMessage("La musique" + info.title + " à bien été arrêté :white_check_mark:");
             break;
                 
          case "word":
