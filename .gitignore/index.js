@@ -211,7 +211,7 @@ bot.on("message", function(message) {
         var member = message.mentions.members.first();
         if (message.mentions.users.size < 1) return message.reply("Hum, à quelle personne j'enleve le unmute?")
         user.removeRole(rolemute)
-        message.channel.sendMessage("@" + user.username + " a bien été unmute")
+        message.channel.sendMessage("@" + user.toString() + " a bien été unmute")
         
         var embed = new Discord.RichEmbed()
         .addField("Commande :", "UNMUTE")
@@ -231,7 +231,7 @@ bot.on("message", function(message) {
         var member = message.mentions.members.first();
         if (message.mentions.users.size < 1) return message.reply("Hum, à quelle personne je met le mute ?")
         user.addRole(rolemute)
-        message.channel.sendMessage("@" + user.username + " a bien été mute.")
+        message.channel.sendMessage("@" + user.toString() + " a bien été mute.")
         
         var embed = new Discord.RichEmbed()
         .addField("Commande :", "MUTE")
