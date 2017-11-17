@@ -13,7 +13,7 @@ function play(connection, message) {
 
     server.dispatcher.on("end", function() {
         if (server.queue[0]) play(connection, message);
-       // else connection.disconnect();
+        else connection.disconnect();
     });
 }
 
@@ -399,22 +399,8 @@ bot.on("message", function(message) {
             break;
             case "skip":
                 var server = servers[message.guild.id];
-                if (server.dispatcher) server.dispatcher.end();
-                message.channel.sendMessage("La musique à été sauté")
             
-            if(!servers[message.guild.id]) servers[message.guild.id] = {
-                queue: []
-            };
-
-            var server = servers[message.guild.id];
-
-            server.queue.push(args[1]);
-            if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
-                play(connection, message);
-            });
-            YTDL.getInfo(args[1], (err, info) => {
-                message.channel.sendMessage("Ajouté : **" + info.title + "**")
-            })
+                if (server.dispatcher) server.dispatcher.end();
             break;
             case "pause":      
             var server = servers[message.guild.id];
