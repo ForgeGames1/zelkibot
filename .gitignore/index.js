@@ -208,7 +208,7 @@ bot.on("message", function(message) {
         var member = message.mentions.members.first();
         if (message.mentions.users.size < 1) return message.reply("Hum, à quelle personne j'enleve le unmute?")
         member.removeRole(roleMute)
-        message.channel.sendMessage("@" + user.toString() + " a bien été unmute")
+        message.channel.sendMessage(user.toString() + " a bien été unmute")
         
         var embed = new Discord.RichEmbed()
         .addField("Commande :", "UNMUTE")
@@ -228,7 +228,7 @@ bot.on("message", function(message) {
         var member = message.mentions.members.first();
         if (message.mentions.users.size < 1) return message.reply("Hum, à quelle personne je met le mute ?")
         member.addRole(roleMute)
-        message.channel.sendMessage("@" + user.toString() + " a bien été mute.")
+        message.channel.sendMessage(user.toString() + " a bien été mute.")
         
         var embed = new Discord.RichEmbed()
         .addField("Commande :", "MUTE")
@@ -249,7 +249,7 @@ bot.on("message", function(message) {
         let time = parseInt(args2[1]) * 60000;
         if(!time) return message.reply("Tu as oublié le temps.")
         if (message.mentions.users.size < 1) return message.reply("Tu as oublié de préciser qui je dois Mute.")
-        message.channel.sendMessage(member.toString() + " a été mute.")
+        message.channel.sendMessage(member.toString() + " a bien été mute.")
         member.addRole(roleMute)
         setTimeout(() => { member.removeRole(rolemute); }, time);
 
