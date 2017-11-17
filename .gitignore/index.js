@@ -11,7 +11,7 @@ var bot = new Discord.Client();
 var servers = {};
 
 bot.on("ready", function () {
-    bot.user.setGame(message.xdlolmdr)
+    bot.user.setGame("Zelki'Bot | z!help" + bot.guilds.size, "https://www.twitch.tv/azeckow_")
     bot.user.setUsername("Zelki'Bot")
     console.log("Zelki'Bot - Connecté");
 });
