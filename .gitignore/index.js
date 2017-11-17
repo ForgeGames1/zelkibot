@@ -166,14 +166,14 @@ bot.on("message", function(message) {
 
 
     switch (args[0].toLowerCase()) {
-       /* case "play":
+        case "play":
             if(!args[1]) {
                 message.reply("Tu as oublié de mettre un lien.");
                 return;
              if(!args[10]) {
                 message.reply("Lien trop court, je crois que tu t'est trompé de lien!");
                 return;
-             } */          
+             }         
         case "unmute":
         if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
         if(!modlog) return message.reply("Je ne trouve pas de channel log.");
