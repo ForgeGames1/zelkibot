@@ -403,6 +403,7 @@ bot.on("message", function(message) {
             var server = servers[message.guild.id];
 
             if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+            message.channel.sendMessage("La musique à bien été arrêter");
             break;
                 
                /* case "ZWord":
