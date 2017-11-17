@@ -243,11 +243,11 @@ bot.on("message", function(message) {
         break;
         case "timedmute":
         if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu n'as pas la permission.");
-        if(!modlog) return message.reply("Je ne trouve pas de channel mod-log.");
-        if (!reasontimed) return message.reply("Tu as oublié la raison.")
-        var member = message.mentions.members.first();
+        if(!modlog) return message.reply("Je ne trouve pas de channel mod-log.");  
         let time = parseInt(args2[1]) * 60000;
         if(!time) return message.reply("Tu as oublié le temps.")
+        if (!reasontimed) return message.reply("Tu as oublié la raison.")
+        var member = message.mentions.members.first();
         if (message.mentions.users.size < 1) return message.reply("Tu as oublié de préciser qui je dois Mute.")
         message.channel.sendMessage(member.toString() + " a bien été mute.")
         member.addRole(roleMute)
@@ -258,18 +258,19 @@ bot.on("message", function(message) {
         .addField("Utilisateur :", user.toString())
         .addField("Modérateur :", message.author.toString())
         .addField("Raison :", reasontimed)
+        .addField("Temps :", args2[1] + " minute(s)")
         .setColor(0x808000)
         .setAuthor(message.author.username, message.author.avatarURL)
         .setTimestamp()
         member.guild.channels.find("name", "log").sendEmbed(embed);
         break;
-            
             case "help":
             var embed = new Discord.RichEmbed()
-            .addField("z!ban", "Cette commande permet de bannir un utilisateur ! Pour l'utiliser, faites z!ban @(utilisateur)")
-                .addField("z!kick", "Cette commande permet de kick un utilisateur ! Pour l'utiliser, faites z!kick @(utilisateur)")
+            .addField("z!ban", "Cette commande permet de bannir un utilisateur ! Pour l'utiliser, faites z!ban @(utilisateur) (raison)")
+                .addField("z!kick", "Cette commande permet de kick un utilisateur ! Pour l'utiliser, faites z!kick @(utilisateur) (raison)")
                 .addField("z!purge", "Cette commande permet de supprimé des messages beaucoup plus rapidement ! Pour l'utiliser, faites z!purge (nombredemessages)")
-                .addField("z!mute", "Cette commande permet de mute un utilisateur. Pour l'utiliser, faites z!mute @(utilisateur)")
+                .addField("z!mute", "Cette commande permet de mute un utilisateur. Pour l'utiliser, faites z!mute @(utilisateur) (raison)")
+                .addField("z!timedmute", "Cette commande permet de muté un utilisateur pendant un certain temps. Pour l'utiliser, faites z!timedmute @(utilisateur) (temps) (raison)")
                 .addField("z!unmute", "Cette commande permet d'unmute un utilisateur. Pour l'utiliser, faites z!unmute @(utilisateur)")
                 .addField("z!ping", "Grâce à cette commande, tu pourras savoir ton ping !")
                 .addField("z!twitter", "Vous donne le twitter de Zelkiax !")
