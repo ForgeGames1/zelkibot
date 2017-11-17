@@ -200,7 +200,7 @@ bot.on("message", function(message) {
 
     switch (args[0].toLowerCase()) {
         case "membres":
-            message.reply("Nous sommes " + bot.users.size + " membres sur le discord !");
+            message.reply("Nous sommes " + guild.members.size + " membres sur le discord !");
         break
         case "unmute":
         if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
