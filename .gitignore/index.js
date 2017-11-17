@@ -189,9 +189,11 @@ bot.on("message", function(message) {
 
     var roleJoueur= member.guild.roles.find("name", "membres")
     
-    var roleMute = member.guild.roles.find("name", "» :name_badge: Zelki' Mute [S]")
+    var roleMute = member.guild.roles.find("name", "» Zelki' Mute [S]")
     
     var modlog = member.guild.channels.find("name", "log")
+    
+    var user = message.mentions.users.first();
 
 
     switch (args[0].toLowerCase()) {
@@ -208,7 +210,7 @@ bot.on("message", function(message) {
         if(!modlog) return message.reply("Je ne trouve pas de channel log.");
         var member = message.mentions.members.first();
         if (message.mentions.users.size < 1) return message.reply("Hum, à quelle personne j'enleve le unmute?")
-        member.removeRole(rolemute)
+        user.removeRole(rolemute)
         message.channel.sendMessage("@" + user.username + " a bien été unmute")
         
         var embed = new Discord.RichEmbed()
@@ -228,7 +230,7 @@ bot.on("message", function(message) {
         if (reason.length < 1) return message.reply("Tu as oublié la raison.");
         var member = message.mentions.members.first();
         if (message.mentions.users.size < 1) return message.reply("Hum, à quelle personne je met le mute ?")
-          member.addRole(member.guild.roles.find("name", "» :name_badge: Zelki' Mute [S]"));
+        user.addRole(rolemute)
         message.channel.sendMessage("@" + user.username + " a bien été mute.")
         
         var embed = new Discord.RichEmbed()
