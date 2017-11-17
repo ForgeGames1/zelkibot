@@ -352,9 +352,9 @@ bot.on("message", function(message) {
        message.delete();
        break;
                 
-                case "ZWord":
+               /* case "ZWord":
                 message.reply("Le mot **" + suffix + "** Me fais penser à " + wordRandomMessage[Math.floor(Math.random() * wordRandomMessage.length)]));
-                break;
+                break;*/
 
             default:
             message.channel.sendMessage("Commande invalide ^^ Fait **z!help** pour voir toutes les commandes disponible !")
