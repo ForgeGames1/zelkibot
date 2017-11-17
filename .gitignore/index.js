@@ -210,7 +210,7 @@ bot.on("message", function(message) {
         if(!modlog) return message.reply("Je ne trouve pas de channel log.");
         var member = message.mentions.members.first();
         if (message.mentions.users.size < 1) return message.reply("Hum, à quelle personne j'enleve le unmute?")
-        user.removeRole(rolemute)
+        user.removeRole(roleMute)
         message.channel.sendMessage("@" + user.toString() + " a bien été unmute")
         
         var embed = new Discord.RichEmbed()
@@ -230,7 +230,7 @@ bot.on("message", function(message) {
         if (reason.length < 1) return message.reply("Tu as oublié la raison.");
         var member = message.mentions.members.first();
         if (message.mentions.users.size < 1) return message.reply("Hum, à quelle personne je met le mute ?")
-        user.addRole(rolemute)
+        user.addRole(roleMute)
         message.channel.sendMessage("@" + user.toString() + " a bien été mute.")
         
         var embed = new Discord.RichEmbed()
