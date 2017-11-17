@@ -13,7 +13,7 @@ function play(connection, message) {
 
     server.dispatcher.on("end", function() {
         if (server.queue[0]) play(connection, message);
-        else connection.disconnect();
+  //      else connection.disconnect();
     });
 }
 
@@ -399,7 +399,7 @@ bot.on("message", function(message) {
             break;
             case "skip":
                 var server = servers[message.guild.id];
-                    
+                if (server.dispatcher) server.dispatcher.end();
                 message.channel.sendMessage("Musique skipé ! :D")
             break;
             case "stop":
