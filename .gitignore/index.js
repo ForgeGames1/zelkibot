@@ -251,7 +251,7 @@ bot.on("message", function(message) {
         if (message.mentions.users.size < 1) return message.reply("Tu as oublié de préciser qui je dois Mute.")
         message.channel.sendMessage(member.toString() + " a bien été mute.")
         member.addRole(roleMute)
-        setTimeout(() => { member.removeRole(rolemute); }, time);
+        setTimeout(() => { member.removeRole(roleMute); }, time);
 
         var embed = new Discord.RichEmbed()
         .addField("Action :", "Mute")
