@@ -11,7 +11,7 @@ var bot = new Discord.Client();
 var servers = {};
 
 bot.on("ready", function () {
-    bot.user.setGame('ZelkiBot - z!help')
+    bot.user.setGame(message.xdlolmdr)
     bot.user.setUsername("Zelki'Bot")
     console.log("Zelki'Bot - Connecté");
 });
