@@ -400,7 +400,6 @@ bot.on("message", function(message) {
             case "skip":
                 var server = servers[message.guild.id];
                     
-                if (server.dispatcher) server.dispatcher.end();
                 message.channel.sendMessage("Musique skipé ! :D")
             break;
             case "stop":
