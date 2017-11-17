@@ -378,11 +378,6 @@ bot.on("message", function(message) {
                 return;
             }
             
-           if(!args[10]) {
-                message.channel.sendMessage("Lien invalide");
-                return;
-            }
-
             if (!message.member.voiceChannel) {
                 message.channel.sendMessage("Tu dois être dans un channel vocal !");
                 return;
