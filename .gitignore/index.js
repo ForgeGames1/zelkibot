@@ -412,7 +412,7 @@ bot.on("message", function(message) {
             break;
                 
          case "word":
-          message.reply('Le mot' + "**" + suffix + "**" + ' me fait penser à **' + wordRandommessage[Math.floor(Math.random() * wordRandommessage.length)]);
+          message.reply('Le mot' + "**" + suffix + "**" + ' me fait penser à **';
           message.delete();
           break; 
 
