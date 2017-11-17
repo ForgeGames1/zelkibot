@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-//const YTDL = require("ytdl-core");
+const YTDL = require("ytdl-core");
 const TOKEN = "Mzc4Mjk2NTYxMDYwMjgyMzY4.DOuWIw.KBrhOFO0ZQ30sTrSG8v9sJxsE48";
 const PREFIX = "z!";
 const EVERYONE = "@";
@@ -11,7 +11,7 @@ var bot = new Discord.Client();
 var servers = {};
 
 bot.on("ready", function () {
-    bot.user.setGame(tamerenslip)
+    bot.user.setGame("Zelki'Bot | z!help | " + bot.users.size + " Membres !", "https://www.twitch.tv/zelkiax")
     bot.user.setUsername("Zelki'Bot")
     console.log("Zelki'Bot - Connecté");
 });
@@ -141,6 +141,11 @@ bot.on('message', function(message) {
 bot.on("guildMemberAdd", function(member) {
     member.guild.channels.find("name", "principal").sendMessage(member.toString() + " Bienvenue sur le discord de **Zelkiax** ! :white_check_mark: -  N'hésite pas à faire la commande z!help :D");
     member.addRole(member.guild.roles.find("name", "» ✔ Subs ✔ ●"));
+    bot.user.setGame("Zelki'Bot | z!help | " + bot.users.size + " Membres !", "https://www.twitch.tv/zelkiax")
+});
+
+bot.on("guildMemberRemove", function(member) {
+    bot.user.setGame("Zelki'Bot | z!help | " + bot.users.size + " Membres !", "https://www.twitch.tv/zelkiax")
 });
 
 bot.on("channelCreate", function(channelCreate) {
@@ -351,6 +356,41 @@ bot.on("message", function(message) {
        message.channel.sendMessage(zelkiaxRandomMessage[Math.floor(Math.random() * zelkiaxRandomMessage.length)]);
        message.delete();
        break;
+       case "play":
+            if(!args[1]) {
+                message.channel.sendMessage("Tu as oublié le lien !");
+                return;
+            }
+
+            if (!message.member.voiceChannel) {
+                message.channel.sendMessage("Tu dois être dans un channel vocal !");
+                return;
+            }
+
+            if(!servers[message.guild.id]) servers[message.guild.id] = {
+                queue: []
+            };
+
+            var server = servers[message.guild.id];
+
+            server.queue.push(args[1]);
+            if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
+                play(connection, message);
+            });
+            YTDL.getInfo(args[1], (err, info) => {
+                message.channel.sendMessage("Ajouté : **" + info.title + "**")
+            })
+            break;
+            case "skip":
+                var server = servers[message.guild.id];
+
+                if (server.dispatcher) server.dispatcher.end();
+            break;
+            case "stop":
+            var server = servers[message.guild.id];
+
+            if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+            break;
                 
                /* case "ZWord":
                 message.reply("Le mot **" + suffix + "** Me fais penser à " + wordRandomMessage[Math.floor(Math.random() * wordRandomMessage.length)]));
