@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const YTDL = require("ytdl-core");
+//const YTDL = require("ytdl-core");
 const TOKEN = "Mzc4Mjk2NTYxMDYwMjgyMzY4.DOuWIw.KBrhOFO0ZQ30sTrSG8v9sJxsE48";
 const PREFIX = "z!";
 const EVERYONE = "@";
