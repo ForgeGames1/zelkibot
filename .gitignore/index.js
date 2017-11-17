@@ -353,7 +353,7 @@ bot.on("message", function(message) {
        break;
                 
                 case "ZWord":
-                message.reply("Le mot **" + suffix + "** Me fais penser à " + wordRandomMessage);
+                message.reply("Le mot **" + suffix + "** Me fais penser à " + wordRandomMessage[Math.floor(Math.random() * wordRandomMessage.length)]);
                 break;
 
             default:
