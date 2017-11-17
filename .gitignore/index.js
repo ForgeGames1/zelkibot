@@ -372,14 +372,14 @@ bot.on("message", function(message) {
        message.channel.sendMessage(zelkiaxRandomMessage[Math.floor(Math.random() * zelkiaxRandomMessage.length)]);
        message.delete();
        break;
-       case "play":
+case "play":
             if(!args[1]) {
-                message.channel.sendMessage("Tu as oublié le lien !");
+                message.channel.sendMessage("Tu as oublié le lien.");
                 return;
             }
-            
+
             if (!message.member.voiceChannel) {
-                message.channel.sendMessage("Tu dois être dans un channel vocal !");
+                message.channel.sendMessage("Tu dois être dans un channel vocal.");
                 return;
             }
 
@@ -402,16 +402,16 @@ bot.on("message", function(message) {
             
                 if (server.dispatcher) server.dispatcher.end();
             break;
+            case "stop":
+            var server = servers[message.guild.id];
+
+            if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+            break;
             case "pause":      
             var server = servers[message.guild.id];
             let player = bot.voiceConnections.get('server', message.server);
             player.pause();
             message.channel.sendMessage("La musique s'est mis en pause !")
-            break;
-            case "stop":
-            var server = servers[message.guild.id];
-            if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-            message.channel.send("J'ai arrêté la musique et j'ai quitté le channel vocal !")
             break;
                 
          case "word":
