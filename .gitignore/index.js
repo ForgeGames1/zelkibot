@@ -178,6 +178,8 @@ bot.on("message", function(message) {
     var suffix = args2.join(" ");
 
     var reason = args2.slice(1).join(" ");
+    
+    var reasontimed = args2.slice(2).join(' ')
 
  //   var roleAnniv = member.guild.roles.find("name", "» 🍰 ANNIV' 🍰 ● ")
 
@@ -189,7 +191,7 @@ bot.on("message", function(message) {
 
     var roleJoueur= member.guild.roles.find("name", "membres")
     
-    var roleMute = member.guild.roles.find("name", "»⌛ Zelki' Mute [S]")
+    var roleMute = member.guild.roles.find("name", "»  ⌛ Zelki' Mute [S]")
     
     var modlog = member.guild.channels.find("name", "log")
     
@@ -235,6 +237,28 @@ bot.on("message", function(message) {
         .addField("Raison : ", reason)
         .addField("Heure:", message.channel.createdAt)
         .setColor("#01A9DB")
+        .setAuthor(message.author.username, message.author.avatarURL)
+        .setTimestamp()
+        member.guild.channels.find("name", "log").sendEmbed(embed);
+        break;
+        case "timedmute":
+        if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu n'as pas la permission.");
+        if(!modlog) return message.reply("Je ne trouve pas de channel mod-log.");
+        if (!reason) return message.reply("Tu as oublié la raison.")
+        var member = message.mentions.members.first();
+        let time = parseInt(args2[1]) * 60000;
+        if(!time) return message.reply("Tu as oublié le temps.")
+        if (message.mentions.users.size < 1) return message.reply("Tu as oublié de préciser qui je dois Mute.")
+        message.channel.sendMessage(member.toString() + " a été mute.")
+        member.addRole(roleMute)
+        setTimeout(() => { member.removeRole(rolemute); }, time);
+
+        var embed = new Discord.RichEmbed()
+        .addField("Action :", "Mute")
+        .addField("Utilisateur :", user.toString())
+        .addField("Modérateur :", message.author.toString())
+        .addField("Raison :", reasontimed)
+        .setColor(0x808000)
         .setAuthor(message.author.username, message.author.avatarURL)
         .setTimestamp()
         member.guild.channels.find("name", "log").sendEmbed(embed);
