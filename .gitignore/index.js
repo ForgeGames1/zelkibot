@@ -374,6 +374,11 @@ bot.on("message", function(message) {
                 message.channel.sendMessage("Tu as oublié le lien !");
                 return;
             }
+            
+           if(!args[10]) {
+                message.channel.sendMessage("Lien invalide");
+                return;
+            }
 
             if (!message.member.voiceChannel) {
                 message.channel.sendMessage("Tu dois être dans un channel vocal !");
@@ -403,7 +408,7 @@ bot.on("message", function(message) {
             var server = servers[message.guild.id];
 
             if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-            message.channel.sendMessage("La musique à bien été arrêter");
+            message.channel.sendMessage("La musique à bien été arrêté :white_check_mark:");
             break;
                 
                /* case "ZWord":
