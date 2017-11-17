@@ -60,11 +60,11 @@ var swakiRandomMessage = [
 var wordRandomMessage = [
     " un animal XD",
     " un fruit o_o",
-    " à Zelkiax MDR",
-    " à ma mè.. Oups, c'est vrai, je n'ai pas de mère je suis un robot!",
+    " Zelkiax MDR",
+    " ma mè.. Oups, c'est vrai, je n'ai pas de mère je suis un robot!",
     " un sport",
     " une musique",
-    " à mes créateurs ! :3"
+    " mes créateurs ! :3"
     ];
 
 
@@ -360,11 +360,11 @@ bot.on("message", function(message) {
        message.delete();
        break
 
-       case "ping":
-       message.reply('Pong ! ' + "**" + message.createdTimestamp + "**" + ' ms. **');
-       message.delete();
-       break; 
-
+        case "ping":
+        message.reply('Pong ! ' + "**" + bot.ping + "**" + ' ms. **');
+        message.delete();
+        break; 
+            
        case "Zelkiax":
        message.channel.sendMessage(zelkiaxRandomMessage[Math.floor(Math.random() * zelkiaxRandomMessage.length)]);
        message.delete();
@@ -411,9 +411,10 @@ bot.on("message", function(message) {
             message.channel.sendMessage("La musique à bien été arrêté :white_check_mark:");
             break;
                 
-                case "word":
-                message.reply("Le mot **" + suffix + "** Me fais penser à " + wordRandomMessage[Math.floor(Math.random() * wordRandomMessage.length)]));
-                break;
+         case "word":
+          message.reply('Le mot' + "**" + suffix + "**" + ' me fait penser à **' + wordRandommessage[Math.floor(Math.random() * wordRandommessage.length)]);
+          message.delete();
+          break; 
 
             default:
             message.channel.sendMessage("Commande invalide ^^ Fait **z!help** pour voir toutes les commandes disponible !")
