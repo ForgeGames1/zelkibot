@@ -266,7 +266,7 @@ bot.on("message", async function(message) {
                 .setDescription("Voici les commandes du bot !")
                 .setTimestamp()
                 message.delete()
-                member.sendEmbed(embed)
+                message.channel.sendEmbed(embed)
             break;
             case "grade":
             var embed = new Discord.RichEmbed()
