@@ -401,6 +401,19 @@ bot.on("message", function(message) {
             
                 if (server.dispatcher) server.dispatcher.end();
             break;
+            case "volume":
+    let suffix = message.content.split(" ")[1];
+    let player = bot.voiceConnections.get('server', message.server);
+    if(!player || !player.playing) return bot.sendMessage(message, 'Aucune musique ne joue en ce moment');
+    if(!suffix) {
+        bot.sendMessage(message, `Le volume est ${(player.getVolume() * 50)}`);
+        let volumeBefore = player.getVolume();
+        let volume = parseInt(suffix);
+        if(volume > 50) return bot.sendMessage(message, "Sa sert à rien de mettre 50% vous aller plus attendre vos amis parler!");
+        player.setVolume((volume / 50));
+        bot.sendMessage(message, `Le volume est passé de ${(volumeBefore * 50)} à ${volume}`);
+               }
+            break;
             case "pause":      
             var server = servers[message.guild.id];
             let player = bot.voiceConnections.get('server', message.server);
@@ -411,7 +424,7 @@ bot.on("message", function(message) {
             case "stop":
             var server = servers[message.guild.id];
             if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-            message.channel.send("J'ai arrêté la musique et j'ai quitté le channel vocal !")
+            message.channel.send("Voilà! J'ai arrêté la musique ! :D")
             break;
                 
          case "word":
