@@ -408,6 +408,8 @@ bot.on("message", function(message) {
             message.channel.sendMessage("La musique s'est mis en pause !")
             break;
             case "continue":
+           var server = servers[message.guild.id];
+            let player = bot.voiceConnections.get('server', message.server);
            player.resume();
            bot.sendMessage(message, "La musique continue de jouer!");
             break;
