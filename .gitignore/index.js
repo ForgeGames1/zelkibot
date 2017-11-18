@@ -178,7 +178,7 @@ bot.on("channelCreate", function(channelCreate) {
 });
 
 
-bot.on("message", function(message) {
+bot.on("message", async function(message) {
     if (message.author.equals(bot.user)) return;
 
     if (!message.content.startsWith(PREFIX)) return;
