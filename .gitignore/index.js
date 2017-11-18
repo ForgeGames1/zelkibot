@@ -372,14 +372,6 @@ bot.on("message", function(message) {
        message.delete();
        break
 
-        case "ping":
-      bot.sendMessage(message, "Pong!", function(error, msg) {
-        if (!error) {
-         bot.updateMessage(msg, "Pong, **" + (msg.timestamp - message.timestamp) + "**ms")
-          }
-      })
-     }
-        break; 
             
        case "Zelkiax":
        message.channel.sendMessage(zelkiaxRandomMessage[Math.floor(Math.random() * zelkiaxRandomMessage.length)]);
