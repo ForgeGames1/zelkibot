@@ -23,7 +23,7 @@ var bot = new Discord.Client();
 var servers = {};
 
 bot.on("ready", function () {
-    bot.user.setGame("Zelki'Bot | z!help | " + bot.users.size + " Membres !", "https://www.twitch.tv/zelkiax")
+    bot.user.setGame("Zelki'Bot | z!help | " + bot.users.size - 1 + " Membres !", "https://www.twitch.tv/zelkiax")
     bot.user.setUsername("Zelki'Bot")
     console.log("Zelki'Bot - Connecté");
 });
