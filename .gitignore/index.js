@@ -160,10 +160,6 @@ bot.on("guildMemberRemove", function(member) {
     bot.user.setGame("Zelki'Bot | z!help | " + bot.users.size + " Membres !", "https://www.twitch.tv/zelkiax")
 });
 
-bot.on("channelCreate", function(guild) {
-    guild.channels.find("name", "log").sendMessage("Un nouveau salon fait son apparition: " + guild.toString() + " !");
-});
-
 
 bot.on("message", async function(message) {
     if (message.author.equals(bot.user)) return;
