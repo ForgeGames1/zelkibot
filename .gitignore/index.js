@@ -535,7 +535,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             return message.channel.send("Rien n'est entrain d'être jouer.")
         break;
             default:
-            message.channel.sendMessage("Commande invalide ^^")
+            message.channel.sendMessage("Commande invalide ^^ Fait **z!help** pour voir toutes les commandes disponible !")
     }
 });
 
@@ -560,10 +560,6 @@ dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 serverQueue.textChannel.send("Maintenant joué : **" + song.title + "**")
 }
 
-            default:
-            message.channel.sendMessage("Commande invalide ^^ Fait **z!help** pour voir toutes les commandes disponible !")
-    }
-});
 
 bot.on("message", function(message) {
     if (message.author.equals(bot.user)) return;
