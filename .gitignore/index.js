@@ -409,7 +409,6 @@ bot.on("message", function(message) {
             break;
             case "continue":
            var server = servers[message.guild.id];
-            let player = bot.voiceConnections.get('server', message.server);
            player.resume();
            bot.sendMessage(message, "La musique continue de jouer!");
             break;
