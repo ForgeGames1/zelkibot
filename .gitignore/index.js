@@ -415,12 +415,7 @@ bot.on("message", function(message) {
             
                 if (server.dispatcher) server.dispatcher.end();
             break;
-            case "pause":      
-            var server = servers[message.guild.id];
-            let player = bot.voiceConnections.get('server', message.server);
-            player.pause();
-            message.channel.sendMessage("La musique s'est mis en pause !")
-            break;
+
             case "stop":
             var server = servers[message.guild.id];
             if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
