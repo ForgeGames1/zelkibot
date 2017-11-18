@@ -414,6 +414,10 @@ bot.on("message", function(message) {
             message.channel.send("Voilà! J'ai arrêté la musique ! :D")
             break;
                 
+       case "ping":
+         message.channel.SendMessage(msg, "Pong, **" + (msg.timestamp - message.timestamp) + "**ms");
+        message.delete();
+        break; 
          case "word":
           message.reply('Le mot: ' + "**" + suffix + "**" + ' me fait penser à' + wordRandomMessage[Math.floor(Math.random() * wordRandomMessage.length)]);
           message.delete();
