@@ -415,7 +415,7 @@ bot.on("message", function(message) {
             break;
                 
        case "ping":
-        message.channel.sendMessage("Pong! Tu as actuellement `" + bot.ping + "` ms ! :D");
+        message.channel.sendMessage("Pong! Tu as actuellement `" + bot.ping + " ms !` :D");
         message.delete();
         break; 
             
