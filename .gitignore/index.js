@@ -415,7 +415,7 @@ bot.on("message", function(message) {
             break;
                 
        case "ping":
-         message.channel.SendMessage(msg, "Pong, **" + (msg.timestamp - message.timestamp) + "**ms");
+         message.channel.SendMessage(msg, "Pong, **" + bot.ping + "**ms");
         message.delete();
         break; 
          case "word":
