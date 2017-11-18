@@ -124,6 +124,10 @@ bot.on('message', function(message) {
             message.channel.sendMessage("On ne juge pas un développeur! :o")
         }
     
+        if(message.content === 'mod') {
+            message.channel.sendMessage("Zelki'Mod")
+        }
+    
             if(message.content === 'xecraft') {
             message.channel.sendMessage("On ne juge pas un développeur! :o")
         }
@@ -147,6 +151,8 @@ bot.on('message', function(message) {
         if(message.content === 'wsh') {
             message.channel.sendMessage('wshh frr')
         }
+    
+    
     
     });
 
@@ -302,7 +308,6 @@ bot.on("message", function(message) {
             member.guild.channels.find("name", "log").sendEmbed(embed);
             bot.channels.get('373240336169828353').sendMessage(":white_check_mark: Le joueur " + user.username + " à bien été kick pour: " + reason);
        
-            message.react(":poop:")
             message.delete();
             break;
         case "ban":
@@ -361,10 +366,19 @@ bot.on("message", function(message) {
        message.reply("Zelkiax est le compte snapchat de Zelkiax, il est grave bogosse en vrai. Je t'invite à aller voir! :D");
        message.delete();
        break
+       
+       case "mod":
+       message.reply("Zelki'Mod");
+       message.delete();
+       break
 
         case "ping":
-        message.reply('Pong ! ' + "**" + bot.ping + "**" + ' ms. **');
-        message.delete();
+      bot.sendMessage(message, "Pong!", function(error, msg) {
+        if (!error) {
+         bot.updateMessage(msg, "Pong, **" + (msg.timestamp - message.timestamp) + "**ms")
+          }
+      })
+     }
         break; 
             
        case "Zelkiax":
@@ -406,11 +420,6 @@ bot.on("message", function(message) {
             let player = bot.voiceConnections.get('server', message.server);
             player.pause();
             message.channel.sendMessage("La musique s'est mis en pause !")
-            break;
-            case "continue":
-           var server = servers[message.guild.id];
-           player.resume();
-           bot.sendMessage(message, "La musique continue de jouer!");
             break;
             case "stop":
             var server = servers[message.guild.id];
