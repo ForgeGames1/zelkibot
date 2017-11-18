@@ -207,7 +207,7 @@ bot.on("message", async function(message) {
         var member = message.mentions.members.first();
         if (message.mentions.users.size < 1) return message.reply("Hum, à quelle personne j'enleve le unmute?")
         member.removeRole(roleMute)
-        message.channel.sendMessage(user.toString() + " a bien été unmute")
+        message.channel.sendMessage(user.toString() + " a bien été unmute ✅")
         
         var embed = new Discord.RichEmbed()
         .addField("Commande :", "UNMUTE")
@@ -227,7 +227,7 @@ bot.on("message", async function(message) {
         if (!reasontimed) return message.reply("Tu as oublié la raison.")
         var member = message.mentions.members.first();
         if (message.mentions.users.size < 1) return message.reply("Tu as oublié de préciser qui je dois Mute.")
-        message.channel.sendMessage(member.toString() + " a bien été mute.")
+        message.channel.sendMessage(member.toString() + " a bien été mute. ✅")
         member.addRole(roleMute)
         setTimeout(() => { member.removeRole(roleMute); }, time);
 
@@ -289,6 +289,7 @@ bot.on("message", async function(message) {
             if (reason.length < 1) return message.reply("Tu as oublié la raison.");
             if (message.mentions.users.size < 1) return message.reply("Tu n'as pas mis son pseudo au complet ! :o")
             message.guild.member(user).kick();
+            message.channel.send(user.toString() + " a bien été kick ✅")
 
             var embed = new Discord.RichEmbed()
             .addField("Commande :", "KICK")
@@ -311,6 +312,7 @@ bot.on("message", async function(message) {
             if (message.mentions.users.size < 1) return message.reply("Tu as oublié de préciser qui je dois bannir..")
             
             message.guild.ban(user, 2);
+            message.channel.send(user.toString() + " a bien été banni ✅")
 
             var embed = new Discord.RichEmbed()
             .addField("Commande :", "BAN")
