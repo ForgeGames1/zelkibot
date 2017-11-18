@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const YTDL = require("ytdl-core");
 const PREFIX = "z!";
 const EVERYONE = "@";
+const YouTube = require("simple-youtube-api")
 
 function play(connection, message) {
     var server = servers[message.guild.id];
@@ -17,6 +18,10 @@ function play(connection, message) {
 }
 
 var client = new Discord.Client();
+
+const youtube = new YouTube("AIzaSyDE684AY4Th50yKvN7lZ9GroJiFvF5yjy8");
+
+const queue = new Map();
 
 var bot = new Discord.Client();
 
@@ -424,7 +429,136 @@ bot.on("message", function(message) {
          case "word":
           message.reply('Le mot: ' + "**" + suffix + "**" + ' me fait penser à' + wordRandomMessage[Math.floor(Math.random() * wordRandomMessage.length)]);
           message.delete();
-          break; 
+          break;
+                   case "play":
+        const searchString = args.slice(1).join(' ')
+                const voiceChannel = message.member.voiceChannel;
+                if (!voiceChannel) return message.channel.send("Tu dois être dans un channel vocal.");
+                const permissions = voiceChannel.permissionsFor(message.client.user)
+                if (!permissions.has('CONNECT')) {
+                    return message.channel.send("Je ne peux pas rejoindre ton channel vocal.")
+                }
+                if (!permissions.has('SPEAK')) {
+                    return message.channel.send("Je n'ai pas les permissions pour parler dans ton channel vocal.")
+                }
+
+                try {
+                    var video = await youtube.getVideo(url);
+                } catch (error) {
+                    try {
+                        var videos = await youtube.searchVideos(searchString, 1);
+                        var video = await youtube.getVideoByID(videos[0].id);
+                    } catch (err) {
+                        console.error(err)
+                        return message.channel.send("Je ne parvient pas à trouver cela.");
+                    }
+                }
+                console.log(video);
+                const song = {
+                    id: video.id,
+                    title: video.title,
+                    url: `https://www.youtube.com/watch?v=${video.id}`
+                };
+                if (!serverQueue) {
+                    const queueConstruct = {
+                        textChannel: message.channel,
+                        voiceChannel: voiceChannel,
+                        connection: null,
+                        songs: [],
+                        volume: 5,
+                        playing: true
+                    };
+                    queue.set(message.guild.id, queueConstruct);
+
+                    queueConstruct.songs.push(song);
+
+                    try {
+                        var connection = await voiceChannel.join();
+                        queueConstruct.connection = connection;
+                        play(message.guild, queueConstruct.songs[0]);
+                    } catch (error) {
+                        console.error(`Je ne peux pas rejoindre le channel vocal : ${error}`)
+                        queue.delete(message.guild.id);
+                        return message.channel.send(`Je ne peux pas rejoindre le channel vocal : ${error}`)
+                    }
+                } else {
+                    serverQueue.songs.push(song);
+                    console.log(serverQueue.songs);
+                    return message.channel.send(`**${song.title}** a été ajouté à la queue !`)
+                }
+        break;
+        case "stop":
+            if (!message.member.voiceChannel) return message.channel.send("Tu dois être dans un channel vocal pour faire cette commande.")
+            if (!serverQueue) return message.channel.send("Rien n'est entrain d'être jouer alors je ne peux pas stop de son(s) !")
+            serverQueue.songs = [];
+            serverQueue.connection.dispatcher.end();
+        break;
+        case "skip":
+        if (!message.member.voiceChannel) return message.channel.send("Tu dois être dans un channel vocal pour faire cette commande.")
+                if (!serverQueue) return message.channel.send("Rien n'est entrain d'être jouer alors je ne peux pas skip de son !")
+                    serverQueue.connection.dispatcher.end();
+        break;
+        case "np":
+        if (!serverQueue) return message.channel.send("Rien n'est entrain d'être jouer")
+        return message.channel.send(`Entrain d'être joué : **${serverQueue.songs[0].title}**`);
+        break;
+        case "volume":
+            if (!message.member.voiceChannel) return message.channel.send("Tu dois être dans un channel vocal pour faire cette commande.")
+            if (!serverQueue) return message.channel.send("Rien n'est entrain d'être joué.")
+            if (!args[1]) return message.channel.send("Le volume courent est : **" + serverQueue.volume + "**");
+            serverQueue.volume = args[1];
+            serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
+            return message.channel.send(`J'ai changer le volume pour : **${args[1]}**`)
+        break;
+        case "queue":
+            if (!serverQueue) return message.channel.send("Rien n'est entrain d'être joué.");
+            return message.channel.send(`
+-_**Sons dans la queue:**_-
+${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
+**Maintenant joué:** ${serverQueue.songs[0].title}
+        `);
+        break;
+        case "pause":
+            if (serverQueue && serverQueue.playing) {
+                serverQueue.playing = false;
+                serverQueue.connection.dispatcher.pause();
+                return message.channel.send("J'ai mis la music en pause !")
+            }
+            return message.channel.send("Rien n'est entrain d'être jouer.")
+        break;
+        case "unpause":
+            if (serverQueue && !serverQueue.playing) {
+                serverQueue.playing = true;
+                serverQueue.connection.dispatcher.resume();
+                return message.channel.send("Musique relancée !")
+            }
+            return message.channel.send("Rien n'est entrain d'être jouer.")
+        break;
+            default:
+            message.channel.sendMessage("Commande invalide ^^")
+    }
+});
+
+function play(guild, song) {
+    const serverQueue = queue.get(guild.id);
+
+    if (!song) {
+        serverQueue.voiceChannel.leave();
+        queue.delete(guild.id);
+        return;
+    }
+
+    const dispatcher = serverQueue.connection.playStream(YTDL(song.url))
+    .on('end', () => {
+        console.log("Le son est fini !");
+        serverQueue.songs.shift();
+        play(guild, serverQueue.songs[0]);
+    })
+    .on('error', error => console.error(error));
+dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+
+serverQueue.textChannel.send("Maintenant joué : **" + song.title + "**")
+}
 
             default:
             message.channel.sendMessage("Commande invalide ^^ Fait **z!help** pour voir toutes les commandes disponible !")
