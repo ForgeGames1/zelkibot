@@ -266,7 +266,7 @@ bot.on("message", async function(message) {
                 .setDescription("Voici les commandes du bot !")
                 .setTimestamp()
                 message.delete()
-                message.channel.sendEmbed(embed);
+                member.sendEmbed(embed)
             break;
             case "grade":
             var embed = new Discord.RichEmbed()
@@ -374,13 +374,7 @@ bot.on("message", async function(message) {
        case "Zelkiax":
        message.channel.sendMessage(zelkiaxRandomMessage[Math.floor(Math.random() * zelkiaxRandomMessage.length)]);
        message.delete();
-       break;
-            case "stop":
-            var server = servers[message.guild.id];
-            if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-            message.channel.send("Voilà! J'ai arrêté la musique ! :D")
-            break;
-                
+       break;   
        case "ping":
         message.channel.sendMessage("Pong! Tu as actuellement `" + bot.ping + " ms !` :D");
         message.delete();
@@ -456,7 +450,7 @@ bot.on("message", async function(message) {
         case "skip":
         if (!message.member.voiceChannel) return message.channel.send("Tu dois être dans un channel vocal pour faire cette commande.")
                 if (!serverQueue) return message.channel.send("Rien n'est entrain d'être jouer alors je ne peux pas skip de son !")
-                songQueue.queue.shift()
+                serverQueue.connection.dispatcher.end()
         break;
         case "np":
         if (!serverQueue) return message.channel.send("Rien n'est entrain d'être jouer")
@@ -484,7 +478,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             if (serverQueue && serverQueue.playing) {
                 serverQueue.playing = false;
                 serverQueue.connection.dispatcher.pause();
-                return message.channel.send("J'ai mis la music en pause !")
+                return message.channel.send("J'ai mis la musique en pause !")
             }
             return message.channel.send("Rien n'est entrain d'être jouer.")
         break;
