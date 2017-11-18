@@ -430,7 +430,7 @@ bot.on("message", async function(message) {
           message.reply('Le mot: ' + "**" + suffix + "**" + ' me fait penser à' + wordRandomMessage[Math.floor(Math.random() * wordRandomMessage.length)]);
           message.delete();
           break;
-                   case "play":
+        case "play":
         const searchString = args.slice(1).join(' ')
                 const voiceChannel = message.member.voiceChannel;
                 if (!voiceChannel) return message.channel.send("Tu dois être dans un channel vocal.");
@@ -491,12 +491,12 @@ bot.on("message", async function(message) {
             if (!message.member.voiceChannel) return message.channel.send("Tu dois être dans un channel vocal pour faire cette commande.")
             if (!serverQueue) return message.channel.send("Rien n'est entrain d'être jouer alors je ne peux pas stop de son(s) !")
             serverQueue.songs = [];
-            serverQueue.connection.dispatcher.end();
+            message.member.voiceChannel.leave()
         break;
         case "skip":
         if (!message.member.voiceChannel) return message.channel.send("Tu dois être dans un channel vocal pour faire cette commande.")
                 if (!serverQueue) return message.channel.send("Rien n'est entrain d'être jouer alors je ne peux pas skip de son !")
-                    serverQueue.connection.dispatcher.end();
+                songQueue.queue.shift()
         break;
         case "np":
         if (!serverQueue) return message.channel.send("Rien n'est entrain d'être jouer")
@@ -514,7 +514,9 @@ bot.on("message", async function(message) {
             if (!serverQueue) return message.channel.send("Rien n'est entrain d'être joué.");
             return message.channel.send(`
 -_**Sons dans la queue:**_-
+
 ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
+
 **Maintenant joué:** ${serverQueue.songs[0].title}
         `);
         break;
@@ -535,7 +537,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             return message.channel.send("Rien n'est entrain d'être jouer.")
         break;
             default:
-            message.channel.sendMessage("Commande invalide ^^ Fait **z!help** pour voir toutes les commandes disponible !")
+            message.channel.sendMessage("Commande invalide ^^ Fait z!help")
     }
 });
 
