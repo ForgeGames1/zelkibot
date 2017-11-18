@@ -375,37 +375,6 @@ bot.on("message", async function(message) {
        message.channel.sendMessage(zelkiaxRandomMessage[Math.floor(Math.random() * zelkiaxRandomMessage.length)]);
        message.delete();
        break;
-       case "play":
-            if(!args[1]) {
-                message.channel.sendMessage("Tu as oublié le lien !");
-                return;
-            }
-            
-            if (!message.member.voiceChannel) {
-                message.channel.sendMessage("Tu dois être dans un channel vocal !");
-                return;
-            }
-
-            if(!servers[message.guild.id]) servers[message.guild.id] = {
-                queue: []
-            };
-
-            var server = servers[message.guild.id];
-
-            server.queue.push(args[1]);
-            if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
-                play(connection, message);
-            });
-            YTDL.getInfo(args[1], (err, info) => {
-                message.channel.sendMessage("Ajouté : **" + info.title + "**")
-            })
-            break;
-            case "skip":
-                var server = servers[message.guild.id];
-            
-                if (server.dispatcher) server.dispatcher.end();
-            break;
-
             case "stop":
             var server = servers[message.guild.id];
             if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
