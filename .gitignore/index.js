@@ -401,20 +401,16 @@ bot.on("message", function(message) {
             
                 if (server.dispatcher) server.dispatcher.end();
             break;
-            case "continue":
-            let player = bot.voiceConnections.get('server', message.server);
-           if(!player) return bot.sendMessage(message, 'No, music is playing at this time.');
-             if( player.playing) return bot.sendMessage(message, 'The music is already playing');
-           player.resume();
-           bot.sendMessage(message, "Resuming music...");
-            break;
             case "pause":      
             var server = servers[message.guild.id];
             let player = bot.voiceConnections.get('server', message.server);
             player.pause();
             message.channel.sendMessage("La musique s'est mis en pause !")
             break;
-            
+            case "continue":
+           player.resume();
+           bot.sendMessage(message, "La musique continue de jouer!");
+            break;
             case "stop":
             var server = servers[message.guild.id];
             if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
