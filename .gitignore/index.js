@@ -508,26 +508,61 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être jouer.")
         break;           
             case "rplay":
-                 const searchString = args.slice(1).join(' ')
+        const searchString = args.slice(1).join(' ')
                 const voiceChannel = message.member.voiceChannel;
-                if (!voiceChannel) return message.channel.send("[Zelki'Bot Radio] - Tu dois être dans un channel vocal.");
+                if (!voiceChannel) return message.channel.send("[Zelki'Bot Musique] - Tu dois être dans un channel vocal.");
                 const permissions = voiceChannel.permissionsFor(message.client.user)
                 if (!permissions.has('CONNECT')) {
-                    return message.channel.send("[Zelki'Bot Radio] - Je ne peux pas rejoindre ton channel vocal.")
+                    return message.channel.send("[Zelki'Bot Musique] - Je ne peux pas rejoindre ton channel vocal.")
                 }
                 if (!permissions.has('SPEAK')) {
-                    return message.channel.send("[Zelki'Bot Radio] - Je n'ai pas les permissions pour parler dans ton channel vocal.")
+                    return message.channel.send("[Zelki'Bot Musique] - Je n'ai pas les permissions pour parler dans ton channel vocal.")
                 }
-             const dispatcher = serverQueue.connection.playStream(randomMusicRadio[Math.floor(Math.random() * randomMusicRadio.length)])
-            .on('end', () => {
-                console.log("Le son est fini !");
-                serverQueue.songs.shift();
-                play(guild, serverQueue.songs[0]);
-            })
-            .on('error', error => console.error(error));
-        dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
-        serverQueue.textChannel.send("[Zelki'Bot Radio] - Maintenant joué : **" + song.title + "**")
+                try {
+                    var video = await youtube.getVideo(url);
+                } catch (error) {
+                    try {
+                        var videos = await youtube.searchVideos(searchString, 1);
+                        var video = await youtube.getVideoByID(videos[0].id);
+                    } catch (err) {
+                        console.error(err)
+                        return message.channel.send("[Zelki'Bot Musique] - Je ne parvient pas à trouver cela.");
+                    }
+                }
+                console.log(video);
+                const song = {
+                    id: video.id,
+                    title: video.title,
+                    url: `randomMusicRadio[Math.floor(Math.random() * randomMusicRadio.length)]`
+                };
+                if (!serverQueue) {
+                    const queueConstruct = {
+                        textChannel: message.channel,
+                        voiceChannel: voiceChannel,
+                        connection: null,
+                        songs: [],
+                        volume: 5,
+                        playing: true
+                    };
+                    queue.set(message.guild.id, queueConstruct);
+
+                    queueConstruct.songs.push(song);
+
+                    try {
+                        var connection = await voiceChannel.join();
+                        queueConstruct.connection = connection;
+                        play(message.guild, queueConstruct.songs[0]);
+                    } catch (error) {
+                        console.error(`[Zelki'Bot Musique] - Je ne peux pas rejoindre le channel vocal : ${error}`)
+                        queue.delete(message.guild.id);
+                        return message.channel.send(`[Zelki'Bot Musique] - Je ne peux pas rejoindre le channel vocal : ${error}`)
+                    }
+                } else {
+                    serverQueue.songs.push(song);
+                    console.log(serverQueue.songs);
+                    return message.channel.send(`[Zelki'Bot Musique] - *${song.title}** a été ajouté à la queue !`)
+                }
         break;
             default:
             message.channel.sendMessage("Commande invalide ^^ Fait z!help pour voir toutes les commandes disponibles !")
