@@ -518,7 +518,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
                 if (!permissions.has('SPEAK')) {
                     return message.channel.send("[Zelki'Bot Radio] - Je n'ai pas les permissions pour parler dans ton channel vocal.")
                 }
-             const dispatcher = serverQueue.connection.playStream(YTDL(randomMusicRadio[Math.floor(Math.random() * randomMusicRadio.length)]))
+             const dispatcher = serverQueue.connection.playStream(randomMusicRadio[Math.floor(Math.random() * randomMusicRadio.length)])
             .on('end', () => {
                 console.log("Le son est fini !");
                 serverQueue.songs.shift();
@@ -527,7 +527,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             .on('error', error => console.error(error));
         dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
-        serverQueue.textChannel.send("Maintenant joué : **" + song.title + "**")
+        serverQueue.textChannel.send("[Zelki'Bot Radio] - Maintenant joué : **" + song.title + "**")
         break;
             default:
             message.channel.sendMessage("Commande invalide ^^ Fait z!help pour voir toutes les commandes disponibles !")
