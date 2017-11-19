@@ -455,7 +455,7 @@ bot.on("message", async function(message) {
                 } else {
                     serverQueue.songs.push(song);
                     console.log(serverQueue.songs);
-                    return message.channel.send(`[Zelki'Bot Musique] - *${song.title}** a été ajouté à la queue !`)
+                    return message.channel.send(`[Zelki'Bot Musique] - **${song.title}** a été ajouté à la queue !`)
                 }
         break;
         case "stop":
