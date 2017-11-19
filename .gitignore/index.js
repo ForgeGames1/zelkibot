@@ -590,28 +590,6 @@ dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 serverQueue.textChannel.send("Maintenant joué : **" + song.title + "**")
 }
 
-function rplay(guild, song) {
-    const serverQueue = queue.get(guild.id);
-
-    if (!song) {
-        serverQueue.voiceChannel.leave();
-        queue.delete(guild.id);
-        return;
-    }
-
-    const dispatcher = serverQueue.connection.playStream(YTDL(song.url))
-    .on('end', () => {
-        console.log("Le son est fini !");
-        serverQueue.songs.shift();
-        play(guild, serverQueue.songs[0]);
-    })
-    .on('error', error => console.error(error));
-dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-
-serverQueue.textChannel.send("[Zelki'Radio] - Musique : **" + song.title + "**")
-}
-
-
 bot.on("message", function(message) {
     if (message.author.equals(bot.user)) return;
 
