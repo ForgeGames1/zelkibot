@@ -506,8 +506,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
                 return message.channel.send("Musique relancée !")
             }
             return message.channel.send("Rien n'est entrain d'être jouer.")
-        break;
-            
+        break;           
             case "rplay":
                 const voiceChannel = message.member.voiceChannel;
                 if (!voiceChannel) return message.channel.send("Tu dois être dans un channel vocal.");
@@ -554,7 +553,7 @@ function rplay(guild, song) {
         return;
     }
 
-    const dispatcher = serverQueue.connection.playStream(YTDL(zelkiaxRandomMessage[Math.floor(Math.random() * zelkiaxRandomMessage.length)]))
+    const dispatcher = serverQueue.connection.playStream(YTDL(randomMusicRadio[Math.floor(Math.random() * randomMusicRadio.length)]))
     .on('end', () => {
         console.log("Le son est fini !");
         serverQueue.songs.shift();
