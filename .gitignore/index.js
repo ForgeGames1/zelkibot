@@ -71,6 +71,25 @@ var lounaaaRandomMessage = [
     "Fait moi 24 Renders, 6 Miniatures et 28 Bannières plzz"
 ];
 
+var randomMusicRadio = [
+    "https://www.youtube.com/watch?v=MXzfG_Id0SU",
+    "https://www.youtube.com/watch?v=fDBiG9rwRKM",
+    "https://www.youtube.com/watch?v=dpmmOZDdUec",
+    "https://www.youtube.com/watch?v=ezAPaI-sD8s",
+    "https://www.youtube.com/watch?v=rldeeWjsxrE",
+    "https://www.youtube.com/watch?v=2C5CjxbFzt4",
+    "https://www.youtube.com/watch?v=2048Nr6aLiQ",
+    "https://www.youtube.com/watch?v=g4wkOyOMe4Y",
+    "https://www.youtube.com/watch?v=dT2owtxkU8k",
+    "https://www.youtube.com/watch?v=u2UJSF8Yy6w",
+    "https://www.youtube.com/watch?v=3tmd-ClpJxA",
+    "https://www.youtube.com/watch?v=ClU3fctbGls",
+    "https://www.youtube.com/watch?v=J_ub7Etch2U",
+    "https://www.youtube.com/watch?v=2Vv-BfVoq4g",
+    "https://www.youtube.com/watch?v=qN4ooNx77u0",
+    "https://www.youtube.com/watch?v=PVjiKRfKpPI",
+    "https://www.youtube.com/watch?v=7wtfhZwyrcc"
+];
 
 bot.on('message', function(message) {
 
@@ -488,8 +507,20 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             }
             return message.channel.send("Rien n'est entrain d'être jouer.")
         break;
+            
+            case "rplay":
+                const voiceChannel = message.member.voiceChannel;
+                if (!voiceChannel) return message.channel.send("Tu dois être dans un channel vocal.");
+                const permissions = voiceChannel.permissionsFor(message.client.user)
+                if (!permissions.has('CONNECT')) {
+                    return message.channel.send("Je ne peux pas rejoindre ton channel vocal.")
+                }
+                if (!permissions.has('SPEAK')) {
+                    return message.channel.send("Je n'ai pas les permissions pour parler dans ton channel vocal.")
+                }
+            break;
             default:
-            message.channel.sendMessage("Commande invalide ^^ Fait z!help")
+            message.channel.sendMessage("Commande invalide ^^ Fait z!help pour voir toutes les commandes disponibles !")
     }
 });
 
@@ -512,6 +543,27 @@ function play(guild, song) {
 dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
 serverQueue.textChannel.send("Maintenant joué : **" + song.title + "**")
+}
+
+function rplay(guild, song) {
+    const serverQueue = queue.get(guild.id);
+
+    if (!song) {
+        serverQueue.voiceChannel.leave();
+        queue.delete(guild.id);
+        return;
+    }
+
+    const dispatcher = serverQueue.connection.playStream(YTDL(zelkiaxRandomMessage[Math.floor(Math.random() * zelkiaxRandomMessage.length)]))
+    .on('end', () => {
+        console.log("Le son est fini !");
+        serverQueue.songs.shift();
+        play(guild, serverQueue.songs[0]);
+    })
+    .on('error', error => console.error(error));
+dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+
+serverQueue.textChannel.send("[Zelki'Radio] - Musique : **" + song.title + "**")
 }
 
 
