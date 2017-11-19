@@ -506,7 +506,39 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
                 return message.channel.send("[Zelki'Bot Musique] - Musique relancée !")
             }
             return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être jouer.")
-        break;           
+        break;
+        case "photo":
+            if (message.mentions.users.size < 1) return message.reply("Tu as oublié de préciser de qui je dois montrer la photo de profil.")
+            var embed = new Discord.RichEmbed()
+            .addField(`Photo de profil de :`, user.username)
+            .setImage(user.avatarURL)
+            .setColor(generateHex())
+            message.channel.sendEmbed(embed)
+            break;
+            case "serverinfo":
+            var embed = new Discord.RichEmbed()
+            .setAuthor("informations sur le serveur " + message.guild.name)
+            .setThumbnail(message.guild.iconURL)
+            .setFooter(message.guild.owner.user.tag, message.guild.owner.user.avatarURL)
+            .addField("Membres", message.guild.memberCount)
+            .addField("Channels", message.guild.channels.filter(chan => chan.type === "voice").size + " channels vocaux " + message.guild.channels.filter(chan => chan.type === "text").size + " channels textuels")
+            .addField("Roles", message.guild.roles.map(role => role.name).join(", "))
+            message.channel.sendEmbed(embed)
+            break;
+            case "userinfo":
+            if (message.mentions.users.size < 1) return message.reply("Tu as oublié de préciser de qui je dois montrer les informations.")
+            var embed = new Discord.RichEmbed()
+                .addField("Pseudo", user.username)
+                .addField("Ashtag", user.discriminator)
+                .addField("ID", user.id)
+                .addField("Compte créer le", user.createdAt)
+                .setThumbnail(user.avatarURL)
+                .setColor(0xff80ff)
+                .setAuthor(message.author.username, message.author.avatarURL)
+                .setFooter("Voilà.", message.author.avatarURL)
+                .setTimestamp()
+            message.channel.sendEmbed(embed);
+            break;
                
             
             
