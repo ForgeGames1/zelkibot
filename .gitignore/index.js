@@ -581,10 +581,9 @@ function play(guild, song) {
 dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
 var embed = new Discord.RichEmbed()
-.addField("Musique joué :", `[${song.title}](${song.url})`)
+.addField("Musique jouée :", `[${song.title}](${song.url})`)
 .setTimestamp()
 .setColor("0x00ff00")
-.setImage(`${song.thumbnail_url}`)
 serverQueue.textChannel.send(embed)
 }
 
