@@ -404,13 +404,13 @@ bot.on("message", async function(message) {
         case "play":
         const searchString = args.slice(1).join(' ')
                 const voiceChannel = message.member.voiceChannel;
-                if (!voiceChannel) return message.channel.send("Tu dois être dans un channel vocal.");
+                if (!voiceChannel) return message.channel.send("[Zelki'Bot Musique] - Tu dois être dans un channel vocal.");
                 const permissions = voiceChannel.permissionsFor(message.client.user)
                 if (!permissions.has('CONNECT')) {
-                    return message.channel.send("Je ne peux pas rejoindre ton channel vocal.")
+                    return message.channel.send("[Zelki'Bot Musique] - Je ne peux pas rejoindre ton channel vocal.")
                 }
                 if (!permissions.has('SPEAK')) {
-                    return message.channel.send("Je n'ai pas les permissions pour parler dans ton channel vocal.")
+                    return message.channel.send("[Zelki'Bot Musique] - Je n'ai pas les permissions pour parler dans ton channel vocal.")
                 }
 
                 try {
@@ -421,7 +421,7 @@ bot.on("message", async function(message) {
                         var video = await youtube.getVideoByID(videos[0].id);
                     } catch (err) {
                         console.error(err)
-                        return message.channel.send("Je ne parvient pas à trouver cela.");
+                        return message.channel.send("[Zelki'Bot Musique] - Je ne parvient pas à trouver cela.");
                     }
                 }
                 console.log(video);
@@ -448,41 +448,41 @@ bot.on("message", async function(message) {
                         queueConstruct.connection = connection;
                         play(message.guild, queueConstruct.songs[0]);
                     } catch (error) {
-                        console.error(`Je ne peux pas rejoindre le channel vocal : ${error}`)
+                        console.error(`[Zelki'Bot Musique] - Je ne peux pas rejoindre le channel vocal : ${error}`)
                         queue.delete(message.guild.id);
-                        return message.channel.send(`Je ne peux pas rejoindre le channel vocal : ${error}`)
+                        return message.channel.send(`[Zelki'Bot Musique] - Je ne peux pas rejoindre le channel vocal : ${error}`)
                     }
                 } else {
                     serverQueue.songs.push(song);
                     console.log(serverQueue.songs);
-                    return message.channel.send(`**${song.title}** a été ajouté à la queue !`)
+                    return message.channel.send(`[Zelki'Bot Musique] - *${song.title}** a été ajouté à la queue !`)
                 }
         break;
         case "stop":
-            if (!message.member.voiceChannel) return message.channel.send("Tu dois être dans un channel vocal pour faire cette commande.")
-            if (!serverQueue) return message.channel.send("Rien n'est entrain d'être jouer alors je ne peux pas stop de son(s) !")
+            if (!message.member.voiceChannel) return message.channel.send("[Zelki'Bot Musique] - Tu dois être dans un channel vocal pour faire cette commande.")
+            if (!serverQueue) return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être jouer alors je ne peux pas stop de son(s) !")
             serverQueue.songs = [];
             message.member.voiceChannel.leave()
         break;
         case "skip":
-        if (!message.member.voiceChannel) return message.channel.send("Tu dois être dans un channel vocal pour faire cette commande.")
-                if (!serverQueue) return message.channel.send("Rien n'est entrain d'être jouer alors je ne peux pas skip de son !")
+        if (!message.member.voiceChannel) return message.channel.send("[Zelki'Bot Musique] - Tu dois être dans un channel vocal pour faire cette commande.")
+                if (!serverQueue) return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être jouer alors je ne peux pas skip de son !")
                 serverQueue.connection.dispatcher.end()
         break;
         case "np":
-        if (!serverQueue) return message.channel.send("Rien n'est entrain d'être jouer")
-        return message.channel.send(`Entrain d'être joué : **${serverQueue.songs[0].title}**`);
+        if (!serverQueue) return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être jouer")
+        return message.channel.send(`[Zelki'Bot Musique] - Entrain d'être joué : **${serverQueue.songs[0].title}**`);
         break;
         case "volume":
-            if (!message.member.voiceChannel) return message.channel.send("Tu dois être dans un channel vocal pour faire cette commande.")
-            if (!serverQueue) return message.channel.send("Rien n'est entrain d'être joué.")
-            if (!args[1]) return message.channel.send("Le volume courent est : **" + serverQueue.volume + "**");
+            if (!message.member.voiceChannel) return message.channel.send("[Zelki'Bot Musique] - Tu dois être dans un channel vocal pour faire cette commande.")
+            if (!serverQueue) return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être joué.")
+            if (!args[1]) return message.channel.send("[Zelki'Bot Musique] - Le volume courent est : **" + serverQueue.volume + "**");
             serverQueue.volume = args[1];
             serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
             return message.channel.send(`J'ai changer le volume pour : **${args[1]}**`)
         break;
         case "queue":
-            if (!serverQueue) return message.channel.send("Rien n'est entrain d'être joué.");
+            if (!serverQueue) return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être joué.");
             return message.channel.send(`
 -_**Sons dans la queue:**_-
 
@@ -495,20 +495,39 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             if (serverQueue && serverQueue.playing) {
                 serverQueue.playing = false;
                 serverQueue.connection.dispatcher.pause();
-                return message.channel.send("J'ai mis la musique en pause !")
+                return message.channel.send("[Zelki'Bot Musique] - J'ai mis la musique en pause !")
             }
-            return message.channel.send("Rien n'est entrain d'être jouer.")
+            return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être jouer.")
         break;
         case "unpause":
             if (serverQueue && !serverQueue.playing) {
                 serverQueue.playing = true;
                 serverQueue.connection.dispatcher.resume();
-                return message.channel.send("Musique relancée !")
+                return message.channel.send("[Zelki'Bot Musique] - Musique relancée !")
             }
-            return message.channel.send("Rien n'est entrain d'être jouer.")
+            return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être jouer.")
         break;           
             case "rplay":
-                
+                 const searchString = args.slice(1).join(' ')
+                const voiceChannel = message.member.voiceChannel;
+                if (!voiceChannel) return message.channel.send("[Zelki'Bot Radio] - Tu dois être dans un channel vocal.");
+                const permissions = voiceChannel.permissionsFor(message.client.user)
+                if (!permissions.has('CONNECT')) {
+                    return message.channel.send("[Zelki'Bot Radio] - Je ne peux pas rejoindre ton channel vocal.")
+                }
+                if (!permissions.has('SPEAK')) {
+                    return message.channel.send("[Zelki'Bot Radio] - Je n'ai pas les permissions pour parler dans ton channel vocal.")
+                }
+             const dispatcher = serverQueue.connection.playStream(YTDL(randomMusicRadio[Math.floor(Math.random() * randomMusicRadio.length)]))
+            .on('end', () => {
+                console.log("Le son est fini !");
+                serverQueue.songs.shift();
+                play(guild, serverQueue.songs[0]);
+            })
+            .on('error', error => console.error(error));
+        dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+
+        serverQueue.textChannel.send("Maintenant joué : **" + song.title + "**")
         break;
             default:
             message.channel.sendMessage("Commande invalide ^^ Fait z!help pour voir toutes les commandes disponibles !")
@@ -533,7 +552,7 @@ function play(guild, song) {
     .on('error', error => console.error(error));
 dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
-serverQueue.textChannel.send("Maintenant joué : **" + song.title + "**")
+serverQueue.textChannel.send("[Zelki'Bot Musique] - Musique joué : **" + song.title + "** !")
 }
 
 bot.on("message", function(message) {
