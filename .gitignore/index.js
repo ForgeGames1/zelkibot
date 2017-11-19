@@ -15,7 +15,7 @@ var bot = new Discord.Client();
 var servers = {};
 
 bot.on("ready", function () {
-    bot.user.setGame("Zelki'Bot | z!help | " + bot.users.size + " Membres !", "https://www.twitch.tv/zelkiax")
+    bot.user.setGame("Zelki'Bot | z!help | " + (bot.users.size - 5) + " Membres !", "https://www.twitch.tv/zelkiax")
     bot.user.setUsername("Zelki'Bot | V2")
     console.log("*``*___*``*");
     console.log("Zelki'Bot - Connecté");
@@ -218,7 +218,7 @@ bot.on("message", async function(message) {
 
     switch (args[0].toLowerCase()) {
         case "membres":
-            message.reply("Nous sommes " + bot.users.size + " membres sur le discord !");
+            message.reply("Nous sommes " + (bot.users.size - 5) + " membres sur le discord !");
         break
         case "unmute":
         if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
@@ -507,64 +507,17 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             }
             return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être jouer.")
         break;           
-            case "rplay":
-        const searchString = args.slice(1).join(' ')
-                const voiceChannel = message.member.voiceChannel;
-                if (!voiceChannel) return message.channel.send("[Zelki'Bot Musique] - Tu dois être dans un channel vocal.");
-                const permissions = voiceChannel.permissionsFor(message.client.user)
-                if (!permissions.has('CONNECT')) {
-                    return message.channel.send("[Zelki'Bot Musique] - Je ne peux pas rejoindre ton channel vocal.")
-                }
-                if (!permissions.has('SPEAK')) {
-                    return message.channel.send("[Zelki'Bot Musique] - Je n'ai pas les permissions pour parler dans ton channel vocal.")
-                }
-
-                try {
-                    var video = await youtube.getVideo(url);
-                } catch (error) {
-                    try {
-                        var videos = await youtube.searchVideos(searchString, 1);
-                        var video = await youtube.getVideoByID(videos[0].id);
-                    } catch (err) {
-                        console.error(err)
-                        return message.channel.send("[Zelki'Bot Musique] - Je ne parvient pas à trouver cela.");
-                    }
-                }
-                console.log(video);
-                const song = {
-                    id: video.id,
-                    title: video.title,
-                    url: `randomMusicRadio[Math.floor(Math.random() * randomMusicRadio.length)]`
-                };
-                if (!serverQueue) {
-                    const queueConstruct = {
-                        textChannel: message.channel,
-                        voiceChannel: voiceChannel,
-                        connection: null,
-                        songs: [],
-                        volume: 5,
-                        playing: true
-                    };
-                    queue.set(message.guild.id, queueConstruct);
-
-                    queueConstruct.songs.push(song);
-
-                    try {
-                        var connection = await voiceChannel.join();
-                        queueConstruct.connection = connection;
-                        play(message.guild, queueConstruct.songs[0]);
-                    } catch (error) {
-                        console.error(`[Zelki'Bot Musique] - Je ne peux pas rejoindre le channel vocal : ${error}`)
-                        queue.delete(message.guild.id);
-                        return message.channel.send(`[Zelki'Bot Musique] - Je ne peux pas rejoindre le channel vocal : ${error}`)
-                    }
-                } else {
-                    serverQueue.songs.push(song);
-                    console.log(serverQueue.songs);
-                    return message.channel.send(`[Zelki'Bot Musique] - *${song.title}** a été ajouté à la queue !`)
-                }
-        break;
-            default:
+               
+            
+            
+            
+            /* ALIAS */
+            
+            
+            
+            
+            
+            
             message.channel.sendMessage("Commande invalide ^^ Fait z!help pour voir toutes les commandes disponibles !")
     }
 });
