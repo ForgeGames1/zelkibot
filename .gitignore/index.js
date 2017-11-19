@@ -459,7 +459,12 @@ bot.on("message", async function(message) {
                 } else {
                     serverQueue.songs.push(song);
                     console.log(serverQueue.songs);
-                    return message.channel.send(`[Zelki'Bot Musique] - **${song.title}** a été ajouté à la queue !`)
+                    var embed = new Discord.RichEmbed()
+                    .addField("Musique ajouté à la queue :", `[${song.title}](${song.url})`)
+                    .setTimestamp()
+                    .setColor("0x0000ff")
+                    .setFooter(`Suggésté par : ${message.author.username}`)
+                    serverQueue.textChannel.send(embed)
                 }
         break;
         case "stop":
@@ -487,13 +492,12 @@ bot.on("message", async function(message) {
         break;
         case "queue":
             if (!serverQueue) return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être joué.");
-            return message.channel.send(`
--_**Sons dans la queue:**_-
-
-${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
-
-**Maintenant joué:** ${serverQueue.songs[0].title}
-        `);
+            var embed = new Discord.RichEmbed()
+        .setAuthor(message.author.username, message.author.avatarURL)
+        .addField("Sons : ", `${serverQueue.songs.map(song => `**-** [${song.title}](${song.url})`).join('\n')}`)
+        .addField("Maintenant joué :", `[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`)
+        .setColor(generateHex())
+        message.channel.sendEmbed(embed)
         break;
         case "pause":
             if (serverQueue && serverQueue.playing) {
@@ -576,7 +580,12 @@ function play(guild, song) {
     .on('error', error => console.error(error));
 dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
-serverQueue.textChannel.send("[Zelki'Bot Musique] - Musique joué : **" + song.title + "** !")
+var embed = new Discord.RichEmbed()
+.addField("Musique joué :", `[${song.title}](${song.url})`)
+.setTimestamp()
+.setColor("0x00ff00")
+.setImage(`${song.thumbnail_url}`)
+serverQueue.textChannel.send(embed)
 }
 
 bot.on("message", function(message) {
