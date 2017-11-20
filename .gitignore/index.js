@@ -41,19 +41,6 @@ var zelkiaxRandomMessage = [
     "Zelkiax > Lounaaa"
 ];
 
-var swakiRandomMessage = [
-    "Zelkiax + Swaki = SwaKiax <3 <3",
-    "Swaki + Zelkiax <3",
-    "Swaki mange des kiwis ! ",
-    "Swaki, la femme de Zelkiax :D",
-    "Zelkiax est tro bo",
-    "Swakiiiiiiiiiiiiiiiiiiii",
-    "O_o Swaki, ikawS O_o",
-    "Zelkiax <3",
-    "*grande moderatore*",
-    "Swaki > Zelkiax"
-];
-
 var wordRandomMessage = [
     " un animal XD",
     " un fruit o_o",
@@ -125,12 +112,7 @@ bot.on('message', function(message) {
          if(message.content === 'azecko') {
             message.channel.sendMessage("Azecko, il est grave bo ^^")
             message.delete();
-        }
-    
-          if(message.content === 'Swaki') {
-            message.channel.sendMessage(swakiRandomMessage[Math.floor(Math.random() * swakiRandomMessage.length)]);
-            message.delete();
-        }
+         }
     
         if(message.content === 'Lounaaa') {
             message.channel.sendMessage(lounaaaRandomMessage[Math.floor(Math.random() * lounaaaRandomMessage.length)]);
@@ -199,7 +181,6 @@ bot.on("message", async function(message) {
     
     var reasontimed = args2.slice(2).join(' ')
 
- //   var roleAnniv = member.guild.roles.find("name", "» 🍰 ANNIV' 🍰 ● ")
 
     var user = message.mentions.users.first();
     
@@ -595,33 +576,5 @@ var embed = new Discord.RichEmbed()
 serverQueue.textChannel.send(embed)
 }
 
-bot.on("message", function(message) {
-    if (message.author.equals(bot.user)) return;
-
-    var args = message.content.substring(EVERYONE.length).split(" ");
-
-    var args2 = message.content.split(" ").slice(1);
-    
-    var suffix = args2.join(" ");
-
-    switch (args[0].toLowerCase()) {
-/*        case suffix + " everyone":
-        message.channel.sendMessage(suffix)
-        message.delete();
-        if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
-        message.reply("Vous n'avez pas la permission de faire @everyone.")
-        break; */
-
-  //      case "everyone":
-//         if(!message.member.hasPermission("EVERYONE")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
-   //  message.delete();
- //       console.log(suffix)
-      //  break;
-
-        default:
-        message.channel.sendMessage("")
-    }
-
-});
 
 bot.login(process.env.TOKEN);
