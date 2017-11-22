@@ -86,7 +86,6 @@ var randomMusicRadio = [
 
 function gameroll() {
         if (rows[0]["refresh"] >= 0 && rows[0]["refresh"] <= 44) {
-            connection.query('UPDATE botactivity SET refresh = "'+addR(rows[0]["refresh"])+'" WHERE botID = "SAMUDAY"');
             if (rows[0]["refresh"] >= 0 && rows[0]["refresh"] < 4) {
            bot.user.setGame("Zelki'Bot | z!help | " + (bot.users.size - 5) + " Membres !", "https://www.twitch.tv/zelkiax");
             }
