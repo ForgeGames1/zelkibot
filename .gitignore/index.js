@@ -87,16 +87,16 @@ var randomMusicRadio = [
 function gameroll() {
         if (rows[0]["refresh"] >= 0 && rows[0]["refresh"] <= 44) {
             if (rows[0]["refresh"] >= 0 && rows[0]["refresh"] < 4) {
-           bot.user.setGame("Zelki'Bot | z!help | " + (bot.users.size - 5) + " Membres !", "https://www.twitch.tv/zelkiax");
+           bot.user.setGame("Zelki'Bot | z!help | " + (bot.users.size - 5) + " Membres !", "https://www.twitch.tv/zelkiax")
             }
             if (rows[0]["refresh"] >= 4 && rows[0]["refresh"] < 9) {
-           bot.user.setGame((bot.users.size - 5) + " Membres !", "https://www.twitch.tv/zelkiax");
+           bot.user.setGame((bot.users.size - 5) + " Membres !", "https://www.twitch.tv/zelkiax")
              }
             if (rows[0]["refresh"] >= 9 && rows[0]["refresh"] < 14) {
-            bot.user.setGame("Dév' par -> XeCrafT & Azecko", "https://www.twitch.tv/zelkiax");
+            bot.user.setGame("Dév' par -> XeCrafT & Azecko", "https://www.twitch.tv/zelkiax")
             } 
             if (rows[0]["refresh"] >= 14 && rows[0]["refresh"] < 19) {
-            bot.user.setGame("<3 Zelki'Bot V2 <3", "https://www.twitch.tv/zelkiax");
+            bot.user.setGame("<3 Zelki'Bot V2 <3", "https://www.twitch.tv/zelkiax")
         }
     });
     t = setTimeout(function () {
