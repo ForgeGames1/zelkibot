@@ -98,7 +98,7 @@ function gameroll() {
             if (rows[0]["refresh"] >= 14 && rows[0]["refresh"] < 19) {
             bot.user.setGame("<3 Zelki'Bot V2 <3", "https://www.twitch.tv/zelkiax")
         }
-    });
+    };
     t = setTimeout(function () {
         gameroll()
     }, 5000);
