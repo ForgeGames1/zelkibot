@@ -19,13 +19,8 @@ var bot = new Discord.Client();
 var servers = {};
 
 bot.on("ready", function () {
- // var interval = setInterval(function() {
- // bot.user.setGame("Zelki'Bot | z!help | " + (bot.users.size - 5) + " Membres !", "https://www.twitch.tv/zelkiax")
- // }, 2, bot.user.setGame((bot.users.size - 5) + " Membres !"));
+  bot.user.setGame("Zelki'Bot | z!help | " + (bot.users.size - 5) + " Membres !", "https://www.twitch.tv/zelkiax")
 
-    let timerId = setInterval(() => bot.user.setGame("Zelki'Bot | z!help | " + (bot.users.size - 5) + " Membres !", "https://www.twitch.tv/zelkiax"), 2000);
-
-    setTimeout(() => { clearInterval(timerId); bot.user.setGame((bot.users.size - 5) + " Membres !"); }, 2000);
     
     bot.user.setUsername("Zelki'Bot | V2")
     console.log("*``*___*``*");
