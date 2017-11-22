@@ -102,7 +102,7 @@ function gameroll() {
     });
     t = setTimeout(function () {
         gameroll()
-    }, 2000);
+    }, 5000);
 }   
 gameroll();
 
