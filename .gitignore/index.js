@@ -20,7 +20,7 @@ var servers = {};
 
 bot.on("ready", function () {
     bot.user.setGame("Zelki'Bot | z!help | " + (bot.users.size - 5) + " Membres !", "https://www.twitch.tv/zelkiax")
-    setTimeout(() => { bot.user.setGame("Membres: " + (bot.user.size - 5) + " !", "https://www.twitch.tv/zelkiax"); }, 10);
+    setTimeout(function(){bot.user.setGame((bot.users.size - 5) + " Membres !", "https://www.twitch.tv/zelkiax")},3000);
     bot.user.setUsername("Zelki'Bot | V2")
     console.log("*``*___*``*");
     console.log("Zelki'Bot - Connecté");
