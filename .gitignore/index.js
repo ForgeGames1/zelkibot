@@ -278,6 +278,7 @@ bot.on("message", async function(message) {
                 .setDescription("Voici les commandes du bot !")
                 .setTimestamp()
                 message.delete()
+                bot.channels.get('373240336169828353').sendEmbed(embed);
                 message.channel.sendEmbed(embed)
             break;
             case "grade":
@@ -316,7 +317,7 @@ bot.on("message", async function(message) {
             .setColor("#01A9DB")
             .setAuthor(message.author.username, message.author.avatarURL)
             .setTimestamp()
-            member.guild.channels.find("name", "log").sendEmbed(embed);
+            member.guild.channels.find("name", "log").sendEmbed(embed);381242462053728267
             bot.channels.get('373240336169828353').sendMessage(":white_check_mark: Le joueur " + user.username + " à bien été kick pour: " + reason);
        
             message.delete();
