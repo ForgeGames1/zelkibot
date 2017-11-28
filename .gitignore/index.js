@@ -278,7 +278,11 @@ bot.on("message", async function(message) {
                 .setDescription("Voici les commandes du bot !")
                 .setTimestamp()
                 message.delete()
-                message.author.sendEmbed(embed);
+             if(!message.channel.id === '381242462053728267') {
+            	message.delete();
+            	message.channel.sendMessage('Les commandes ne peux qu'envoyé dans #discussion-bot');
+              }
+                message.channel.sendEmbed(embed);
             break;
             case "grade":
             var embed = new Discord.RichEmbed()
