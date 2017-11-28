@@ -278,7 +278,8 @@ bot.on("message", async function(message) {
                 .setDescription("Voici les commandes du bot !")
                 .setTimestamp()
                 message.delete()
-                bot.channels.get('373240336169828353').sendEmbed(embed);
+                var channel = bot.servers.get("name", "discussion-bot").defaultChannel;
+                bot.sendEmbed(channel, embed);
             break;
             case "grade":
             var embed = new Discord.RichEmbed()
