@@ -279,7 +279,6 @@ bot.on("message", async function(message) {
                 .setTimestamp()
                 message.delete()
                 bot.channels.get('373240336169828353').sendEmbed(embed);
-                message.channel.sendEmbed(embed)
             break;
             case "grade":
             var embed = new Discord.RichEmbed()
