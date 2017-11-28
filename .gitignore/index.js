@@ -280,7 +280,7 @@ bot.on("message", async function(message) {
                 message.delete()
              if(!message.channel.id === '381242462053728267') {
             	message.delete();
-            	message.channel.sendMessage('Les commandes ne peux qu'envoyé dans #discussion-bot');
+            	message.channel.sendMessage("Les commandes ne peux qu'envoyé dans #discussion-bot");
               }
                 message.channel.sendEmbed(embed);
             break;
