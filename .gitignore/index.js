@@ -251,6 +251,10 @@ bot.on("message", async function(message) {
         member.guild.channels.find("name", "log").sendEmbed(embed);
         break;
             case "help":
+             if(!message.channel.id === '381242462053728267') {
+            	message.delete();
+            	message.channel.sendMessage("Les commandes ne peux qu'envoyé dans #discussion-bot");
+              } else {
             var embed = new Discord.RichEmbed()
             .addField("z!ban", "Cette commande permet de bannir un utilisateur ! Pour l'utiliser, faites z!ban @(utilisateur) (raison)")
                 .addField("z!kick", "Cette commande permet de kick un utilisateur ! Pour l'utiliser, faites z!kick @(utilisateur) (raison)")
@@ -278,11 +282,8 @@ bot.on("message", async function(message) {
                 .setDescription("Voici les commandes du bot !")
                 .setTimestamp()
                 message.delete()
-             if(!message.channel.id === '381242462053728267') {
-            	message.delete();
-            	message.channel.sendMessage("Les commandes ne peux qu'envoyé dans #discussion-bot");
-              }
                 message.channel.sendEmbed(embed);
+              }
             break;
             case "grade":
             var embed = new Discord.RichEmbed()
