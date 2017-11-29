@@ -251,7 +251,7 @@ bot.on("message", async function(message) {
         member.guild.channels.find("name", "log").sendEmbed(embed);
         break;
             case "help":
-             if(message.channel.id === '381242462053728267') {
+             if(message.channel.id === '381117760609976323') {
             	message.delete();
             	message.channel.sendMessage("Les commandes ne peux qu'envoyé dans #discussion-bot");
               } else {
