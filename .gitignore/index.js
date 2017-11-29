@@ -207,9 +207,18 @@ bot.on("message", async function(message) {
 
     switch (args[0].toLowerCase()) {
         case "membres":
+             if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
             message.reply("Nous sommes " + (bot.users.size - 5) + " membres sur le discord !");
+          }
         break
         case "unmute":
+             if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
         if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
         if(!modlog) return message.reply("Je ne trouve pas de channel log.");
         var member = message.mentions.members.first();
@@ -226,8 +235,13 @@ bot.on("message", async function(message) {
         .setAuthor(message.author.username, message.author.avatarURL)
         .setTimestamp()
         member.guild.channels.find("name", "log").sendEmbed(embed);
+        }
         break;
         case "mute":
+             if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
         if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu n'as pas la permission.");
         if(!modlog) return message.reply("Je ne trouve pas de channel mod-log.");  
         let time = parseInt(args2[1]) * 60000;
@@ -249,12 +263,13 @@ bot.on("message", async function(message) {
         .setAuthor(message.author.username, message.author.avatarURL)
         .setTimestamp()
         member.guild.channels.find("name", "log").sendEmbed(embed);
+          }
         break;
             case "help":
              if(message.channel.id === '381117760609976323') {
-            	message.delete();
-            	message.channel.sendMessage("Les commandes ne peux qu'envoyé dans #discussion-bot");
-              } else {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
             var embed = new Discord.RichEmbed()
             .addField("z!ban", "Cette commande permet de bannir un utilisateur ! Pour l'utiliser, faites z!ban @(utilisateur) (raison)")
                 .addField("z!kick", "Cette commande permet de kick un utilisateur ! Pour l'utiliser, faites z!kick @(utilisateur) (raison)")
@@ -286,6 +301,10 @@ bot.on("message", async function(message) {
               }
             break;
             case "grade":
+             if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
             var embed = new Discord.RichEmbed()
                 .addField("» ❗️🔰 ADMIN' 🔰 ❗️ ●", "Grade réservé aux administraueur du discord.")
                 .addField("» 🔧Grand(e)-Modo' 🔧️● ", "Personne qui se charge de garder le discord calme/respecteueux !")
@@ -301,10 +320,15 @@ bot.on("message", async function(message) {
                 .setColor("#01A9DB")
                 message.delete()
                 message.channel.sendEmbed(embed);
+            }
             break;
                 
 
         case "kick":
+            if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
             if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande. :x:");
             if(!modlog) return message.reply("Je ne trouve pas de channel log.");
             if (reason.length < 1) return message.reply("Tu as oublié la raison.");
@@ -325,8 +349,13 @@ bot.on("message", async function(message) {
             bot.channels.get('373240336169828353').sendMessage(":white_check_mark: Le joueur " + user.username + " à bien été kick pour: " + reason);
        
             message.delete();
+            }
             break;
         case "ban":
+           if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
             if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
             if(!modlog) return message.reply("Je ne trouve pas de channel log.");
             if (reason.length < 1) return message.reply("Tu as oublié la raison.");
@@ -349,8 +378,13 @@ bot.on("message", async function(message) {
             bot.channels.get('373240336169828353').sendMessage(":white_check_mark: Le joueur " + user.username + " à bien été kick pour: " + reason);
             
             message.delete();
+            }
             break;
         case "purge":
+             if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
             if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
             var messagecount = parseInt(args2.join(" "));
             message.channel.fetchMessages({
@@ -366,44 +400,84 @@ bot.on("message", async function(message) {
             .setFooter("Ouf ! Sa as fait un bon ménage dans le channel ! ^^")
             message.delete()
             member.guild.channels.find("name", "log").sendEmbed(embed);
+            }
             break;;
 
 
        case "twitter":
+            if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
        message.reply('Voici le compte twitter de Zelkiax: https://twitter.com/zelkiax_');
        message.delete();
+            }
        break;
        
        case "instagram":
+            if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
        message.reply('Voici le compte instagram de Zelkiax: https://www.instagram.com/zelkiax/');
        message.delete();
+            }
        break
        
        case "snapchat":
+            if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
        message.reply("Zelkiax est le compte snapchat de Zelkiax, il est grave bogosse en vrai. Je t'invite à aller voir! :D");
        message.delete();
+            }
        break
        
        case "mod":
+           if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
        message.reply("Zelki'Mod");
        message.delete();
+            }
        break
 
             
        case "Zelkiax":
+             if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
        message.channel.sendMessage(zelkiaxRandomMessage[Math.floor(Math.random() * zelkiaxRandomMessage.length)]);
        message.delete();
+            }
        break;   
        case "ping":
+             if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
         message.channel.sendMessage("Pong! Tu as actuellement `" + bot.ping + " ms !` :D");
         message.delete();
+            }
         break; 
             
          case "word":
+             if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
           message.reply('Le mot: ' + "**" + suffix + "**" + ' me fait penser à' + wordRandomMessage[Math.floor(Math.random() * wordRandomMessage.length)]);
           message.delete();
+            }
           break;
         case "play":
+             if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
         const searchString = args.slice(1).join(' ')
                 const voiceChannel = message.member.voiceChannel;
                 if (!voiceChannel) return message.channel.send("[Zelki'Bot Musique] - Tu dois être dans un channel vocal.");
@@ -464,12 +538,18 @@ bot.on("message", async function(message) {
                     .setFooter(`Suggésté par : ${message.author.username}`)
                     serverQueue.textChannel.send(embed)
                 }
+            }
         break;
         case "stop":
+             if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
             if (!message.member.voiceChannel) return message.channel.send("[Zelki'Bot Musique] - Tu dois être dans un channel vocal pour faire cette commande.")
             if (!serverQueue) return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être jouer alors je ne peux pas stop de son(s) !")
             serverQueue.songs = [];
             message.member.voiceChannel.leave()
+            }
         break;
         case "skip":
         if (!message.member.voiceChannel) return message.channel.send("[Zelki'Bot Musique] - Tu dois être dans un channel vocal pour faire cette commande.")
@@ -477,18 +557,32 @@ bot.on("message", async function(message) {
                 serverQueue.connection.dispatcher.end()
         break;
         case "np":
+             if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
         if (!serverQueue) return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être jouer")
         return message.channel.send(`[Zelki'Bot Musique] - Entrain d'être joué : **${serverQueue.songs[0].title}**`);
+            }
         break;
         case "volume":
+             if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
             if (!message.member.voiceChannel) return message.channel.send("[Zelki'Bot Musique] - Tu dois être dans un channel vocal pour faire cette commande.")
             if (!serverQueue) return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être joué.")
             if (!args[1]) return message.channel.send("[Zelki'Bot Musique] - Le volume courent est : **" + serverQueue.volume + "**");
             serverQueue.volume = args[1];
             serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
             return message.channel.send(`J'ai changer le volume pour : **${args[1]}**`)
+            }
         break;
         case "queue":
+            if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
             if (!serverQueue) return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être joué.");
             var embed = new Discord.RichEmbed()
         .setAuthor(message.author.username, message.author.avatarURL)
@@ -496,32 +590,52 @@ bot.on("message", async function(message) {
         .addField("Maintenant joué :", `[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`)
         .setColor(generateHex())
         message.channel.sendEmbed(embed)
+            }
         break;
         case "pause":
+            if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
             if (serverQueue && serverQueue.playing) {
                 serverQueue.playing = false;
                 serverQueue.connection.dispatcher.pause();
                 return message.channel.send("[Zelki'Bot Musique] - J'ai mis la musique en pause !")
             }
             return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être jouer.")
+            }
         break;
         case "unpause":
+            if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
             if (serverQueue && !serverQueue.playing) {
                 serverQueue.playing = true;
                 serverQueue.connection.dispatcher.resume();
                 return message.channel.send("[Zelki'Bot Musique] - Musique relancée !")
             }
             return message.channel.send("[Zelki'Bot Musique] - Rien n'est entrain d'être jouer.")
+            }
         break;
         case "photo":
+        if(message.channel.id === '381117760609976323') {
+         message.delete();
+         message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+          } else {
             if (message.mentions.users.size < 1) return message.reply("Tu as oublié de préciser de qui je dois montrer la photo de profil.")
             var embed = new Discord.RichEmbed()
             .addField(`Photo de profil de :`, user.username)
             .setImage(user.avatarURL)
             .setColor(generateHex())
             message.channel.sendEmbed(embed)
+             }
             break;
             case "serverinfo":
+            if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
             var embed = new Discord.RichEmbed()
             .setAuthor("informations sur le serveur " + message.guild.name)
             .setThumbnail(message.guild.iconURL)
@@ -530,8 +644,13 @@ bot.on("message", async function(message) {
             .addField("Channels", message.guild.channels.filter(chan => chan.type === "voice").size + " channels vocaux " + message.guild.channels.filter(chan => chan.type === "text").size + " channels textuels")
             .addField("Roles", message.guild.roles.map(role => role.name).join(", "))
             message.channel.sendEmbed(embed)
+            }
             break;
             case "userinfo":
+             if(message.channel.id === '381117760609976323') {
+            message.delete();
+            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
+            } else {
             if (message.mentions.users.size < 1) return message.reply("Tu as oublié de préciser de qui je dois montrer les informations.")
             var embed = new Discord.RichEmbed()
                 .addField("Pseudo", user.username)
@@ -544,6 +663,7 @@ bot.on("message", async function(message) {
                 .setFooter("Voilà.", message.author.avatarURL)
                 .setTimestamp()
             message.channel.sendEmbed(embed);
+            }
             break;
                
             
