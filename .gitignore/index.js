@@ -206,6 +206,8 @@ bot.on("message", async function(message) {
     
     var modlog = member.guild.channels.find("name", "log")
     
+    var botsalon = member.guild.channels.find("name", "discussion-bot")
+    
     var user = message.mentions.users.first();
     
     const serverQueue = queue.get(message.guild.id);
@@ -215,12 +217,8 @@ bot.on("message", async function(message) {
 
     switch (args[0].toLowerCase()) {
         case "membres":
-             if(!message.channel.id === '381242462053728267') {
-            message.delete();
-            message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
-            } else {
+        if(message.channel.id != '381242462053728267') return message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
             message.reply("Nous sommes " + (bot.users.size - 5) + " membres sur le discord !");
-          }
         break
         case "unmute":
              if(message.channel.id === '381117760609976323') {
