@@ -462,17 +462,28 @@ bot.on("message", async function(message) {
         message.channel.sendMessage("Pong! Tu as actuellement `" + bot.ping + " ms !` :D");
         message.delete();
             }
-        break; 
-            
-         case "word":
+        break;
+                               
+         case "question":
              if(message.channel.id === '381117760609976323') {
             message.delete();
             message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
             } else {
-          message.reply('Le mot: ' + "**" + suffix + "**" + ' me fait penser à' + wordRandomMessage[Math.floor(Math.random() * wordRandomMessage.length)]);
-          message.delete();
+             message.channel.sendMessage("Vrai ou faux: Zelkiax à plus d'abonnés qu'OxO ?");
+                
+            if(message.content === 'Vrai') {
+            message.reply("Mauvaise réponse !");
+            message.delete();
+            }
+                                
+            if(message.content === 'Faux') {
+            message.reply("Bonne réponse !");
+            message.delete();
+            }   
+                
             }
           break;
+            
         case "play":
              if(message.channel.id === '381117760609976323') {
             message.delete();
