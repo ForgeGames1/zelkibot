@@ -291,7 +291,6 @@ bot.on("message", async function(message) {
                 .setTimestamp()
                 message.delete()
                 message.channel.sendEmbed(embed);
-              }
             break;
             case "grade":
             var embed = new Discord.RichEmbed()
@@ -528,7 +527,6 @@ bot.on("message", async function(message) {
             .setImage(user.avatarURL)
             .setColor(generateHex())
             message.channel.sendEmbed(embed)
-             }
             break;
             case "serverinfo":
             var embed = new Discord.RichEmbed()
