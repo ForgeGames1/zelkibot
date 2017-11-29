@@ -471,17 +471,16 @@ bot.on("message", async function(message) {
             } else {
              message.channel.sendMessage("Vrai ou faux: Zelkiax à plus d'abonnés qu'OxO ?");
                 
-            else if(message.content === 'Vrai') {
+            }
+            if(message.content === 'Vrai') {
             message.reply("Mauvaise réponse !");
             message.delete();
             }
                                 
-            else if(message.content === 'Faux') {
+           if(message.content === 'Faux') {
             message.reply("Bonne réponse !");
             message.delete();
             }   
-                
-            }
           break;
             
         case "play":
