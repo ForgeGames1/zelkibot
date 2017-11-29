@@ -155,7 +155,15 @@ bot.on('message', function(message) {
             message.channel.sendMessage('wshh frr')
         }
     
-    
+                if(message.content === 'Vrai') {
+            message.reply("Mauvaise réponse !");
+            message.delete();
+            }
+                                
+           if(message.content === 'Faux') {
+            message.reply("Bonne réponse !");
+            message.delete();
+            }  
     
     });
 
@@ -471,16 +479,7 @@ bot.on("message", async function(message) {
             } else {
              message.channel.sendMessage("Vrai ou faux: Zelkiax à plus d'abonnés qu'OxO ?");
                 
-            }
-            if(message.content === 'Vrai') {
-            message.reply("Mauvaise réponse !");
-            message.delete();
-            }
-                                
-           if(message.content === 'Faux') {
-            message.reply("Bonne réponse !");
-            message.delete();
-            }   
+            } 
           break;
             
         case "play":
