@@ -215,7 +215,7 @@ bot.on("message", async function(message) {
 
     switch (args[0].toLowerCase()) {
         case "membres":
-             if(message.channel.id === '381117760609976323') {
+             if(message.channel.id !=== '381242462053728267') {
             message.delete();
             message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en #discussions-bot ! :negative_squared_cross_mark:");
             } else {
