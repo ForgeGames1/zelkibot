@@ -182,8 +182,6 @@ bot.on("message", async function(message) {
     if (message.author.equals(bot.user)) return;
 
     if (!message.content.startsWith(PREFIX)) return;
-    
-    if(message.channel.id != '381242462053728267') return message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en " + botsalon.toString() + " :negative_squared_cross_mark:");
 
     var args = message.content.substring(PREFIX.length).split (" ");
 
@@ -216,6 +214,7 @@ bot.on("message", async function(message) {
 
     const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
 
+    if(message.channel.id != '381242462053728267') return message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en " + botsalon.toString() + " :negative_squared_cross_mark:");
 
     switch (args[0].toLowerCase()) {
         case "membres":
