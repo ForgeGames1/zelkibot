@@ -19,7 +19,7 @@ var bot = new Discord.Client();
 var servers = {};
 
 bot.on("ready", function () {
-  bot.user.setGame("Zelki'Bot | z!help | " + (bot.users.size - 5) + " Membres !", "https://www.twitch.tv/zelkiax")
+  bot.user.setGame("Zelki'Bot | z!help | " + (bot.users.size - 5) + " Membres !", "https://www.twitch.tv/zelkibot")
 
     
     bot.user.setUsername("Zelki'Bot | V2")
