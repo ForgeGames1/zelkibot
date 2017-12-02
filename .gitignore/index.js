@@ -216,8 +216,9 @@ bot.on("message", async function(message) {
 
     const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
 
-    if(!message.channel.id === botsalon, botsalon2) return message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en " + botsalon.toString() + " :negative_squared_cross_mark:");
-
+    if(!message.channel.id === botsalon) return message.channel.sendMessage("Cette commande ne peut être utilisé uniquement en " + botsalon.toString() + " :negative_squared_cross_mark:");
+    if(message.channel.id === botsalon2) return;
+    
     switch (args[0].toLowerCase()) {
         case "membres":
             message.reply("Nous sommes " + (bot.users.size - 5) + " membres sur le discord !");
