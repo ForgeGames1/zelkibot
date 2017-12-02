@@ -361,6 +361,7 @@ bot.on("message", async function(message) {
         case "purge":
             if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("Tu ne peux exécuter cette commande.");
             var messagecount = parseInt(args2.join(" "));
+            if(!messagecount) return message.channel.send("Tu dois mettre un certain nombre de messages.")
             message.channel.fetchMessages({
                 limit: messagecount
             }).then(messages => message.channel.bulkDelete(messagecount));
